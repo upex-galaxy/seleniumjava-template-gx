@@ -7,7 +7,7 @@ import e2e.utils.Locator;
 import e2e.utils.Assertion;
 
 public class TestBase {
-    public static final String baseUrl = "https://www.selenium.dev/selenium/web/web-form.html";
+    public static final String baseUrl = "https://demoqa.com/";
     public static final DriverManager Manager = new DriverManager();
     public WebDriver web;
     public Locator get;

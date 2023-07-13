@@ -17,7 +17,7 @@ public class Hooks {
 
     @Before
     public void openWebSite() {
-        driver.navigate().to("http://www.google.co.uk");
+        driver.navigate().to("https://demoqa.com/");
     }
 
     @After

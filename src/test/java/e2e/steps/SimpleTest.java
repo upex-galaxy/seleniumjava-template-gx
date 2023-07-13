@@ -11,6 +11,7 @@ import e2e.utils.Locator;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+// ! Este Test Suite es de Ejemplo. Aquí no se usa el Test Base, pero se aprecia el beforeEach. Se recomienda el uso del TestBase.
 @RunWith(JUnit4.class)
 public class SimpleTest {
 

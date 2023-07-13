@@ -10,18 +10,24 @@ import e2e.fixtures.TestBase;
 public class FirstTest extends TestBase {
     @Test
     public void TC1_submitMessageTest() throws InterruptedException {
-        String title = web.getTitle();
-        then.shouldBeEqual(title, "Web form");
+        String url = "https://demoqa.com/text-box";
+        web.get(url);
 
-        WebElement textBox = get.ByName("my-text");
-        WebElement submitButton = get.ByTag("button");
+        WebElement fullNameInput = get.ById("userName");
+        WebElement emailInput = get.ById("userEmail");
+        WebElement currentAddressInput = get.ById("currentAddress");
+        WebElement permanentAddressInput = get.ById("permanentAddress");
+        WebElement submitButton = get.ById("submit");
 
-        textBox.sendKeys("Selenium");
+        fullNameInput.sendKeys("UPEX Galaxy");
+        emailInput.sendKeys("upexgalaxy@upex.com");
+        currentAddressInput.sendKeys("Chicago");
+        permanentAddressInput.sendKeys("U.S.A");
         submitButton.click();
 
-        WebElement message = get.ById("message");
-        String value = message.getText();
-        then.shouldBeEqual(value, "Received!");
+        WebElement output = get.Selector("#output p");
+        String value = output.getText();
+        then.shouldBeEqual(value, "Name:UPEX Galaxy");
         Thread.sleep(1000); // todo: Esperamos 1 segundo para poder ver con nuestros ojos el assertion.
     }
 }
