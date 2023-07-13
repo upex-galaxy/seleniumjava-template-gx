@@ -1,0 +1,77 @@
+{
+	"workbench.settings.editor": "json",
+	"workbench.colorTheme": "Andromeda Italic",
+	"workbench.iconTheme": "vscode-icons",
+	"cSpell.language": "en,es",
+	"terminal.integrated.defaultProfile.windows": "Git Bash",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[java]": {
+		"editor.defaultFormatter": "redhat.java",
+		"editor.formatOnPaste": true,
+		"editor.formatOnSave": true,
+		"editor.formatOnType": true
+	},
+	"[feature]": {
+		"editor.defaultFormatter": "CucumberOpen.cucumber-official"
+	},
+	"[cucumber]": {
+		"editor.defaultFormatter": "CucumberOpen.cucumber-official"
+	},
+	"files.associations": {
+		"*.feature": "feature"
+	},
+	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+	"editor.quickSuggestions": {
+		"comments": false,
+		"strings": true,
+		"other": true
+	},
+	"editor.formatOnType": true,
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+	"editor.tabCompletion": "on",
+	"editor.lineHeight": 20,
+	"editor.cursorBlinking": "expand",
+	"eslint.validate": ["typescript", "javascript", "ts", "js"],
+	"eslint.format.enable": true,
+	"eslint.codeAction.showDocumentation": {
+		"enable": true
+	},
+	"cSpell.enableFiletypes": ["cucumber"],
+	"cSpell.autoFormatConfigFile": true,
+	"cucumber.features": ["*/**/.feature"],
+	"cucumber.glue": ["*/**/.ts", "*/**/.js"],
+	"cypressHelper.menuItems": {
+		"OpenCypress": false,
+		"RunCypress": false,
+		"GenerateCustomCommandTypes": true,
+		"GoToCustomCommand": false,
+		"FindCustomCommandReferences": true,
+		"FindStepDefinitionReferences": true,
+		"SchemaGenerator": false,
+		"ParseHAR": false,
+		"mockAutocomplete": false
+	},
+	"cucumberautocomplete.strictGherkinCompletion": true,
+	"cucumberautocomplete.strictGherkinValidation": false,
+	"cucumberautocomplete.customParameters": [
+		{
+			"parameter": "{ab}",
+			"value": "(a|b)"
+		}
+	],
+	"cucumberautocomplete.skipDocStringsFormat": true,
+	"cucumberautocomplete.formatConfOverride": {
+		"But": "relative"
+	},
+	"cucumberautocomplete.onTypeFormat": true,
+	"cucumberautocomplete.gherkinDefinitionPart": "(Given|When|Then)\\(",
+	"cucumberautocomplete.stepRegExSymbol": "'",
+	"git.enableSmartCommit": true,
+	"githubPullRequests.ignoredPullRequestBranches": ["main"],
+	"java.configuration.updateBuildConfiguration": "interactive",
+	"java.compile.nullAnalysis.mode": "automatic",
+	"maven.terminal.useJavaHome": true
+}
