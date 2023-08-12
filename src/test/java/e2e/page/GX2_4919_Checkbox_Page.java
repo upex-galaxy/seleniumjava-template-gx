@@ -110,8 +110,9 @@ public class GX2_4919_Checkbox_Page {
         for (String selectedTitle : selectedTitles) {
             sanitizedSelectedTitles.add(selectedTitle);
         }
+        titlesMatch = sanitizedSelectedTitles.containsAll(sanitizedTitles);
 
-        return titlesMatch = sanitizedSelectedTitles.containsAll(sanitizedTitles);
+        return titlesMatch;
     }
 
     public void ClickRandomPrincipalsubFolders() {
