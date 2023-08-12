@@ -26,4 +26,4 @@ jobs:
               run: mvn -B clean package
 
             - name: Run Selenium tests
-              run: mvn -B -Dtest=FirstTest test
+              run: mvn -B -Dtest=GX2_4919_Checkbox test
