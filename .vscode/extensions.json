@@ -29,7 +29,6 @@
 		"donjayamanne.githistory",
 		"eamodio.gitlens",
 		//! General Frameworks:
-		"CucumberOpen.cucumber-official",
 		"ms-vscode.vscode-typescript-next",
 		"xabikos.JavaScriptSnippets",
 		//! Project main Framework Extensions:
