@@ -14,7 +14,7 @@ public class GX2_4919_Checkbox extends TestBase {
 
     @BeforeEach
     public void setup1() {
-        web.get(BASE_URL + "checkbox");
+        web.get(BASE_URL + "/checkbox");
         checkboxPage = new GX2_4919_Checkbox_Page(web);
         String url = web.getCurrentUrl();
         then.shouldBeEqual(url, "https://demoqa.com/checkbox");

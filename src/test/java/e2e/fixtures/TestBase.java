@@ -2,12 +2,13 @@ package e2e.fixtures;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import java.util.concurrent.TimeUnit;
+
+import java.time.Duration;
 import e2e.utils.Locator;
 import e2e.utils.Assertion;
 
 public class TestBase {
-    public static final String BASE_URL = "https://demoqa.com/";
+    public static final String BASE_URL = "https://demoqa.com";
     private static final DriverManager MANAGER = new DriverManager();
     public WebDriver web;
     public Locator get;
@@ -18,9 +19,8 @@ public class TestBase {
         web = MANAGER.setChromeDriver();
         get = new Locator(web);
         then = new Assertion();
-        web.get(BASE_URL);
         web.manage().window().maximize();
-        web.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        web.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
 
     @AfterEach

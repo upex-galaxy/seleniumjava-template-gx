@@ -8,15 +8,15 @@
 
     <properties>
         <failsafe.fork.count>1</failsafe.fork.count>
-        <java.version>1.8</java.version>
+        <java.version>20</java.version>
         <maven.build.timestamp.format>yyyy-MM-dd-HHmm</maven.build.timestamp.format>
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
         <project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
         <archetype.encoding>${encoding}</archetype.encoding>
-        <cucumber.version>1.2.5</cucumber.version>
-        <selenium.version>3.0.1</selenium.version>
+        <cucumber.version>7.13.0</cucumber.version>
+        <selenium.version>4.11.0</selenium.version>
     </properties>
 
     <build>
@@ -87,38 +87,11 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Cucumber parallel plugin -->
-            <plugin>
-                <groupId>com.github.temyers</groupId>
-                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                <version>2.2.0</version>
-                <executions>
-                    <execution>
-                        <?m2e execute onConfiguration?>
-                        <id>generateRunners</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>generateRunners</goal>
-                        </goals>
-                        <configuration>
-                            <glue>e2e</glue>
-                            <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
-                            <featuresDirectory>src/test/resources/features/</featuresDirectory>
-                            <cucumberOutputDir>target/cucumber-reports</cucumberOutputDir>
-                            <format>json</format>
-                            <filterFeaturesByTags>true</filterFeaturesByTags>
-                            <namingScheme>pattern</namingScheme>
-                            <parallelScheme>SCENARIO</parallelScheme>
-                            <namingPattern>{f}IT</namingPattern>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
     <dependencies>
+        <!--* Main Repo Dependencies -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -159,84 +132,70 @@
             <artifactId>guice</artifactId>
             <version>4.1.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-guice -->
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-guice</artifactId>
-            <version>${cucumber.version}</version>
+            <version>7.13.0</version>
         </dependency>
 
-
-        <!-- test dependencies -->
+        <!--* test dependencies -->
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-report-plugin</artifactId>
             <version>3.1.0</version>
             <type>maven-plugin</type>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
-            <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-        
-        <!-- Dependencia para JUnit 5 (JUnit Jupiter) -->
+        <!--* Dependencia para JUnit 5 (JUnit Jupiter) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.10.0-M1</version>
             <scope>test</scope>
         </dependency>
-        
-        <!-- Dependencia para el motor de ejecución de JUnit Jupiter -->
+        <!--* Dependencia para el motor de ejecución de JUnit Jupiter -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.10.0-M1</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- Dependencia para JUnit 4 (JUnit Vintage) -->
+        <!--* Dependencia para JUnit 4 (JUnit Vintage) -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.3.2</version>
         </dependency>
+        <!--* Logger https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.7</version>
+        </dependency>
 
     </dependencies>
 
     <profiles>
-        <profile>
-            <id>serial</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <failsafe.fork.count>1</failsafe.fork.count>
-                <classes>**/AllTests.java</classes>
-            </properties>
-        </profile>
-        <profile>
-            <id>parallel</id>
-            <properties>
-                <failsafe.fork.count>4</failsafe.fork.count>
-                <classes>**/*IT.java</classes>
-            </properties>
-        </profile>
     </profiles>
 
 </project>

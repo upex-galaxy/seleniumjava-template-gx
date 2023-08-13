@@ -9,10 +9,14 @@ import e2e.fixtures.TestBase;
 @RunWith(JUnit4.class)
 public class FirstTest extends TestBase {
 
+    @BeforeEach
+    public void precondition() {
+        String endpoint = BASE_URL + "/text-box";
+        web.get(endpoint);
+    }
+
     @Test
     public void TC1_submitMessageTest() throws InterruptedException {
-        String url = "https://demoqa.com/text-box";
-        web.get(url);
 
         WebElement fullNameInput = get.ById("userName");
         WebElement emailInput = get.ById("userEmail");
