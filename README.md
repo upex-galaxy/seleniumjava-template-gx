@@ -3,6 +3,7 @@
 [![vscode-logo]][vscode-site] [![selenium-logo]][selenium-site] [![java-logo]][java-site]
 
 # 🧪Testing Automation: Selenium 4 Java con Maven (+Cucumber)
+![upexGX_seleniumjava](https://github.com/upex-galaxy/L1-seljava-demo/assets/91127281/3d5a98c8-7e2b-49ac-8390-4f97b4548628)
 
 Este es un proyecto Oficial de UPEX para usar Selenium4 usando Java y Maven.
 
