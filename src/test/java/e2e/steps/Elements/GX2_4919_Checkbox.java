@@ -4,11 +4,8 @@ import e2e.fixtures.TestBase;
 import e2e.page.GX2_4919_Checkbox_Page;
 import java.util.List;
 import org.junit.jupiter.api.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.openqa.selenium.WebElement;
 
-@RunWith(JUnit4.class)
 public class GX2_4919_Checkbox extends TestBase {
     public GX2_4919_Checkbox_Page checkboxPage;
 

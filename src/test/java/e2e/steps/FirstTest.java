@@ -1,12 +1,9 @@
 package e2e.steps;
 
 import org.junit.jupiter.api.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.openqa.selenium.WebElement;
 import e2e.fixtures.TestBase;
 
-@RunWith(JUnit4.class)
 public class FirstTest extends TestBase {
 
     @BeforeEach
