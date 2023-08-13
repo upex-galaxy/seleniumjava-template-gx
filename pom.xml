@@ -32,60 +32,24 @@
                 </configuration>
             </plugin>
 
-            <!-- MAVEN SUREFIRE PLUGIN -->
+            <!-- MAVEN TEST RUNNER PLUGIN -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.1.2</version>
-                <dependencies>
-                    <!-- Agrega el proveedor de JUnit 5 para Surefire -->
-                    <dependency>
-                        <groupId>org.junit.jupiter</groupId>
-                        <artifactId>junit-jupiter-engine</artifactId>
-                        <version>5.8.2</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.junit.jupiter</groupId>
-                        <artifactId>junit-jupiter-api</artifactId>
-                        <version>5.10.0-M1</version>
-                    </dependency>
-                </dependencies>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
                 </configuration>
-            </plugin>
-
-            <!-- integration tests i.e. cucumber tests -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.19.1</version>
-                <configuration>
-                    <forkCount>${failsafe.fork.count}</forkCount>
-                    <reuseForks>false</reuseForks>
-                    <includes>
-                        <include>${classes}</include>
-                    </includes>
-                    <runOrder>alphabetical</runOrder>
-                    <argLine>-Duser.language=en</argLine>
-                    <argLine>-Xmx512m</argLine>
-                    <argLine>-XX:MaxPermSize=256m</argLine>
-                    <argLine>-Dfile.encoding=UTF-8</argLine>
-                    <systemPropertyVariables>
-                        <project.dir>${basedir}</project.dir>
-                    </systemPropertyVariables>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>failsafe-integration-test</id>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -158,28 +122,23 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.0-M1</version>
+            <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
         <!--* Dependencia para el motor de ejecución de JUnit Jupiter -->
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.0-M1</version>
+            <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
-        <!--* Dependencia para JUnit 4 (JUnit Vintage) -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.3.2</version>
+            <version>5.4.0</version>
         </dependency>
         <!--* Logger https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
@@ -187,10 +146,14 @@
             <artifactId>slf4j-api</artifactId>
             <version>2.0.7</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.4.11</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
-
-    <profiles>
-    </profiles>
 
 </project>
