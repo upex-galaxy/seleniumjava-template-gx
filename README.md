@@ -2,7 +2,7 @@
 
 [![vscode-logo]][vscode-site] [![selenium-logo]][selenium-site] [![java-logo]][java-site]
 
-# 🧪Testing Automation de Selenium 4 Java con Maven (+Cucumber)
+# 🧪Testing Automation: Selenium 4 Java con Maven (+Cucumber)
 
 Este es un proyecto Oficial de UPEX para usar Selenium4 usando Java y Maven.
 
@@ -33,11 +33,13 @@ Este es un proyecto Oficial de UPEX para usar Selenium4 usando Java y Maven.
     mvn compile
     ```
 
-7. Para comprobar que todo está instalado, puedes correr el comando de pruebas E2E `mvn verify -Dheadless=true`, lo cual ejecutará todas las pruebas
-   activas Automatizadas de Selenium que tiene el repo (en modo headless, sin aparecer el navegador en pantalla). **(Puedes detener esta ejecución de
-   pruebas si te parece larga con Ctrl+C en la terminal)**
+7. Para comprobar que todo está instalado, EJECUTA el comando de pruebas E2E: <br> `mvn verify -Dheadless=true`<br>, lo cual ejecutará todas las
+   pruebas activas Automatizadas de Selenium que tiene el repo (en modo headless, sin aparecer el navegador en pantalla). <br> **(Puedes detener esta
+   ejecución de pruebas si te parece larga con Ctrl+C en la terminal)**
 
-## Ejecutar las pruebas
+# EJECUCIÓN DE PRUEBAS CON SELENIUM
+
+### En Visual Studio Code:
 
 Para ejecutar las pruebas, abre Visual Studio Code y asegúrate de tener el Test Runner instalado. Si no lo tienes, puedes instalarlo desde la sección
 de extensiones de Visual Studio Code.
@@ -45,7 +47,7 @@ de extensiones de Visual Studio Code.
 Después, abre el archivo de prueba que deseas ejecutar y haz clic en el botón de "Run" que aparece al lado del nombre del archivo. Esto ejecutará
 todas las pruebas dentro del archivo.
 
-## En la Terminal
+### En la Terminal:
 
 Este proyecto utiliza un Plugin de Maven para correr las pruebas de Integración E2E. Para correr todas las pruebas, ejecuta el siguiente comando en la
 terminal de VSCODE: del proyecto:
@@ -76,7 +78,7 @@ mvn verify -Dit.test=FirstTest
 Recuerda que si utilizas Visual Studio Code, puedes correr pruebas directamente utilizando la extensión Java Test Runner, cuya función está en el
 panel de navegación a un costado del Visual Studio Code.
 
-## ESTRUCTURA DEL REPOSITORIO DE PRUEBAS
+# ESTRUCTURA DEL REPOSITORIO DE PRUEBAS
 
 El proyecto de Automatización Selenium-Java está estructurado de la siguiente manera:
 
@@ -153,7 +155,7 @@ public class SuiteTest extends TestBase {
    Solo cambia el Nombre Class del archivo Test.java bajo prueba en el paso "🧪Run Selenium tests", y no borres o cambies nada más, que funcione y
    pase los Checks.
 9. OJO: Aún no está habilitado CUCUMBER para ser usado en este proyecto, pero si quieres ayudarnos con la investigación e implementación, eres
-   bienvenido (si eres nuevo aprendiedno selenium java, no investigues nada sobre cucumber, enfócate en lo primero)
+   bienvenido (si eres nuevo aprendiedno selenium java, no investigues nada sobre cucumber, enfócate en lo primero).
 
 ---
 
@@ -178,4 +180,4 @@ public class SuiteTest extends TestBase {
 [selenium-logo]: https://img.shields.io/badge/Selenium-black?logo=selenium&style=for-the-badge
 [selenium-site]: https://www.selenium.dev
 [java-logo]: https://img.shields.io/badge/Java-black?logo=java&style=for-the-badge
-[java-site]: https://www.javascript.com/
+[java-site]: https://www.tutorialspoint.com/java/java_documentation.htm
