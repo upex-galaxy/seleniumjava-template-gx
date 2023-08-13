@@ -1,0 +1,29 @@
+name: 🤖CI run for Test Suite Execution🧪
+run-name: ${{github.actor}}👨🏻‍🔬 runs Suite in ${{github.ref_name}}
+
+on: # This Run is a template. The correct "Run On" should be: Any except QA and Main
+    push:
+        branches-ignore:
+            - main
+            - QA
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: 💻Checkout
+              uses: actions/checkout@v3
+
+            - name: 💿Set up JAVA 20 with Maven
+              uses: actions/setup-java@v3
+              with:
+                  java-version: '20'
+                  distribution: 'temurin'
+                  cache: maven
+
+            - name: 🧬Install All Dependencies with Maven
+              run: mvn -B package --file pom.xml
+
+            - name: 🧪Run Selenium tests
+              run: mvn clean verify -Dit.test=FirstTest -Dheadless=true
