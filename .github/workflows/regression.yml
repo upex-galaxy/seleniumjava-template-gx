@@ -29,7 +29,7 @@ jobs:
                   cache: maven
 
             - name: 🧬Install All Dependencies with Maven
-              run: mvn package --file pom.xml
+              run: mvn -B package --file pom.xml
 
             - name: 🧪Run Selenium tests
               run: mvn clean verify -Dheadless=true

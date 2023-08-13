@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebElement;
 
-public class GX2_4919_Checkbox extends TestBase {
+public class GX2_4919_CheckboxTest extends TestBase {
     public GX2_4919_Checkbox_Page checkboxPage;
 
     @BeforeEach
