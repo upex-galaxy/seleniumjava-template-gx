@@ -1,7 +1,5 @@
 package e2e.steps;
 
-import java.util.List;
-
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
