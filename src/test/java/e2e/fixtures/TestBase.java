@@ -7,18 +7,18 @@ import e2e.utils.Locator;
 import e2e.utils.Assertion;
 
 public class TestBase {
-    public static final String baseUrl = "https://demoqa.com/";
-    public static final DriverManager Manager = new DriverManager();
+    public static final String BASE_URL = "https://demoqa.com/";
+    private static final DriverManager MANAGER = new DriverManager();
     public WebDriver web;
     public Locator get;
     public Assertion then;
 
     @BeforeEach
     public void setup() {
-        web = Manager.setChromeDriver();
+        web = MANAGER.setChromeDriver();
         get = new Locator(web);
         then = new Assertion();
-        web.get(baseUrl);
+        web.get(BASE_URL);
         web.manage().window().maximize();
         web.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }

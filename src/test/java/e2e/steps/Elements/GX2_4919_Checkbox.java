@@ -10,12 +10,12 @@ import org.openqa.selenium.WebElement;
 
 @RunWith(JUnit4.class)
 public class GX2_4919_Checkbox extends TestBase {
-    public GX2_4919_Checkbox_Page checkbox;
+    public GX2_4919_Checkbox_Page checkboxPage;
 
     @BeforeEach
     public void setup1() {
-        web.get(baseUrl + "checkbox");
-        checkbox = new GX2_4919_Checkbox_Page(web);
+        web.get(BASE_URL + "checkbox");
+        checkboxPage = new GX2_4919_Checkbox_Page(web);
         String url = web.getCurrentUrl();
         then.shouldBeEqual(url, "https://demoqa.com/checkbox");
     }
@@ -24,9 +24,9 @@ public class GX2_4919_Checkbox extends TestBase {
     @Test
     public void TC01() throws InterruptedException {
 
-        checkbox.ClickButtonExpandAll();
+        checkboxPage.ClickButtonExpandAll();
 
-        boolean isDisplayed = checkbox.get.ElementDisplayCheckbox().isDisplayed();
+        boolean isDisplayed = checkboxPage.get.ElementDisplayCheckbox().isDisplayed();
         then.shouldBeTrue(isDisplayed);
 
     }
@@ -35,9 +35,9 @@ public class GX2_4919_Checkbox extends TestBase {
     @Test
     public void TC02() throws InterruptedException {
 
-        checkbox.ClickButtonColapseAll();
+        checkboxPage.ClickButtonColapseAll();
 
-        boolean isDisplayed = checkbox.get.ElementNoDisplayCheckbox().isDisplayed();
+        boolean isDisplayed = checkboxPage.get.ElementNoDisplayCheckbox().isDisplayed();
         then.shouldBeTrue(isDisplayed);
 
     }
@@ -45,27 +45,27 @@ public class GX2_4919_Checkbox extends TestBase {
     @DisplayName("4920 |TC3: Validar Al clickear Home todas las carpetas y archivos sean iguales a los del resultado de mensaje")
     @Test
     public void TC03() throws InterruptedException {
-        checkbox.ClickButtonExpandAll();
-        checkbox.ClickButtonCheckedHome();
-        List<String> Titles = checkbox.GetTextAllTitles();
+        checkboxPage.ClickButtonExpandAll();
+        checkboxPage.ClickButtonCheckedHome();
+        List<String> Titles = checkboxPage.GetTextAllTitles();
 
         Thread.sleep(1000);
-        String TxtResult = checkbox.GetMsjResultText();
+        String TxtResult = checkboxPage.GetMsjResultText();
 
-        boolean checked = checkbox.ValidateListTitles_And_ListResult(TxtResult, Titles);
+        boolean checked = checkboxPage.ValidateListTitles_And_ListResult(TxtResult, Titles);
         then.shouldBeTrue(checked);
     }
 
     @DisplayName("4920 |TC4: Validar que al clickear en cualquier carpeta su checkbox cambie a 'checked'")
     @Test
     public void TC04() throws InterruptedException {
-        WebElement ToElement = checkbox.get.ButtonCheckedHome();
-        checkbox.ScrollTolink(ToElement);
+        WebElement ToElement = checkboxPage.get.ButtonCheckedHome();
+        checkboxPage.ScrollTolink(ToElement);
         Thread.sleep(1000);
-        checkbox.ClickButtonExpandAll();
-        checkbox.ClickRandomPrincipalsubFolders();
-        List<WebElement> allFolderAndFiles = checkbox.get.ElementValidateAllChecked();
-        boolean checked = checkbox.ValidateAllCheckedButton(allFolderAndFiles);
+        checkboxPage.ClickButtonExpandAll();
+        checkboxPage.ClickRandomPrincipalsubFolders();
+        List<WebElement> allFolderAndFiles = checkboxPage.get.ElementValidateAllChecked();
+        boolean checked = checkboxPage.ValidateAllCheckedButton(allFolderAndFiles);
         then.shouldBeTrue(checked);
     }
 }
