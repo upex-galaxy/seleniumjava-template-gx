@@ -162,7 +162,7 @@ public class SuiteTest extends TestBase {
 
 ---
 
-# 🚩NIVELES DE TESTER (QA ENGINEER) en UPEX Galaxy:
+# 🚩NIVELES DE TESTER QA en UPEX Galaxy:
 
 El programa **UPEX Galaxy** está diseñado para guiar a los Testers a través de 2 Etapas (Career Paths). Cada Etapa conlleva ciertos **NIVELES** que el
 Tester debe alcanzar para llegar a su mayor **SENIORITY**:
