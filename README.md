@@ -2,7 +2,8 @@
 
 [![vscode-logo]][vscode-site] [![selenium-logo]][selenium-site] [![java-logo]][java-site]
 
-# 🧪Testing Automation: Selenium 4 Java con Maven (+Cucumber)
+# 🧪Testing Automation: Selenium 4 Java con Maven
+
 ![upexGX_seleniumjava](https://github.com/upex-galaxy/L1-seljava-demo/assets/91127281/3d5a98c8-7e2b-49ac-8390-4f97b4548628)
 
 Este es un proyecto Oficial de UPEX para usar Selenium4 usando Java y Maven.
@@ -132,44 +133,141 @@ public class SuiteTest extends TestBase {
 
 # PLAN DE PRUEBA: ESTRATEGIA Y DISEÑO
 
-### 🚩LEVEL ONE (L1):
+### 🚩NORMATIVAS A SEGUIR:
 
-1. La Perfecta Nomenclatura del nombre de Archivo de prueba, con CamelCase: <br>
-   `{StoryID}_{StoryShortName}Test.java ej: GX_50_AddItemsToCartTest.java`
-2. Archivo de Prueba dentro del directorio del Componente correspondiente, ejemplo: <br>
-   `src/test/java/e2e/steps/Elements/GX2_4919_CheckboxTest.java`.
-3. Buen diseño del Test Suite elaborado (Esto implica que se vea bien el código en general, que al menos funcione).
+1. Perfecta Nomenclatura del nombre de Archivo de prueba: <br> `{GX-ID}-{StoryShortName}.{extensionFile} ej: GX-50-AgregarItemsAlCart.cy.js`
+2. Archivo de Prueba dentro del directorio del Componente correspondiente, ejemplo: <br> `cypress/e2e/Tests/ComponentName/GX-1-StoryTestSuite.cy.js`.
+3. Buen diseño del Test Suite elaborado (Esto implica que se vean bien el código en general, que al menos funcione).
 4. Tener el Markdown de la US en la carpeta Test-Plan en su correspondiente carpeta Sprint, ejemplo: <br>
-   `src/test-plan/in-sprint/S21/GX2-4919.md`<br> Esto implica que cada vez que se trabaje en un Sprint nuevo, se debería crear la carpeta
-   correspondiente "S" + número del sprint, como se muestra en el ejemplo arriba.
-5. Hacer SIEMPRE uso del Fixture `TestBase` para el setup del Driver por lo menos. Es decir, que en cada clase de Suite de prueba, hacer el "extends
-   TestBase" para llamar el DriverManager que instancia el driver para usar en cada caso de prueba. Dicho TestBase se encuentra aquí: <br>
-   `src/test/java/e2e/fixtures/TestBase.java`.
-6. En caso de usar PageObjectModel en Java: <br> El nombre del archivo debe terminar en `Page.java`, Y Debe estar dentro de la carpeta "pages" del
-   directorio de e2e, ejemplo: <br> `src/test/java/e2e/page/CheckboxPage.java`. (ATENCIÓN: En caso de UPEX, como muchos pueden trabajar en un mismo
-   POM, éste archivo puede ser almacenado en un subdirectorio con las iniciales del usuario, ejemplo yo que me llamo Elyer Maldonado, puedo usar "EM",
-   pero en un escenario REAL de trabajo, No deberías usar un subdirectorio para alojar el POM, aquí lo hacemos solo para no chocar trabajos), ejemplo
-   para el caso de UPEX:<br> `src/test/java/e2e/page/EM/CheckboxPage.java`
-7. En caso de usar el módulo de Action, Locator, y Assertion: Asegurarse de aplicarlos adecuadamente, pero si necesitas añadir más métodos de estos
-   módulos, ponte en contacto con el Líder del Repositorio.
-8. En caso de usar el CI Pipeline: Modifica únicamente el archivo `CI-sanityTest.yml` del proyecto, y asegúrate de modificarlo correctamente: <br>
-   Solo cambia el Nombre Class del archivo Test.java bajo prueba en el paso "🧪Run Selenium tests", y no borres o cambies nada más, que funcione y
-   pase los Checks.
-9. OJO: Aún no está habilitado CUCUMBER para ser usado en este proyecto, pero si quieres ayudarnos con la investigación e implementación, eres
-   bienvenido (si eres nuevo aprendiedno selenium java, no investigues nada sobre cucumber, enfócate en lo primero).
+   `cypress/test-plan/in-sprint/sprint-9/userStory.md`<br> Esto implica que cada vez que se trabaje en un Sprint nuevo, se debería crear la carpeta
+   correspondiente "sprint-" + número del sprint, como se muestra en el ejemplo arriba.
+5. NO usar fixture como PageObjectModel sino como Data (es decir, no agarrar elementos Web por fixtures, sino usar el Fixture para iterar Data o
+   reutilizar variables).
+    - Previamente en GX, se usaba el patrón Fixture como POM, porque era fácil de aprender, pero hoy en día las entrevistas técnicas piden PageObject
+      Model de la manera tradicional, sin usar Commands.
+6. Los "Cypress Commands" no es un uso obligatorio; pero si se quiere usar, debería aplicarse para hacer funciones de algoritmos para múltiples suites
+   o para generar precondiciones repetitivas (Background).
+
+7. **En caso de usar Fixtures**: Chequear que el archivo ".json" esté dentro de la carpeta correspondiente al componente, ejemplo: <br>
+   `cypress/fixtures/account/example.json`.
+8. **En caso de usar PageObjectModel**: Chequear que el "Page.js" esté dentro de la carpeta "pages" en la de "support", ejemplo: <br>
+   `cypress/support/pages/example.Page.js`.
+9. **En caso de usar Commands**: Asegurarse de aplicarlo para crear pasos de Precondiciones o Scripts de Algoritmos complejos (NO USAR como Pasos de
+   Acción, eso sería tarea para el POM).
+10. **En caso de usar el CI Pipeline**: Usar únicamente el archivo predeterminado del proyecto `sanity.yml`, y asegurarse de modificarlo correctamente
+    (Solo cambiar el Path del Test Suite y el parámetro de Importación TX para Jira) y no borrar o cambiar nada más, que funcione y pase los Checks.
+    El archivo `regression.yml` se ejecutará automaticamente cuando los cambios hayan mergeado a QA.
+11. **En caso de usar Cucumber**: Chequear que el archivo Gherkin (.feature) y los StepDefinitions (.js) estén correctamente diseñados y que la
+    Ejecución en CI funcione y pase los Checks.
 
 ---
 
-### 🚩LEVEL TWO (L2):
+# 🚩NIVELES DE TESTER (QA ENGINEER) en UPEX Galaxy:
 
-1. Es obligatorio realizar TODO lo anterior declarado, pero adicionalmente:
-    - Tener MUCHO mejor código en los Scripts.
-2. Obligatoriamente, realizar:
-    - Hacer el correspondiente PageObjectModel
-    - Crear tus propios Métodos de SuperPrecondition (en caso de necesitarlo)
-    - Usar los módulos de Utils (Action, Locator, Assertion) en lugar de hardcodear.
-    - Hacer uso del CI Pipeline
-3. OPCIONAL: usar `Cucumber` si la US conviene, pero no es obligatorio para L2.
+El programa **UPEX Galaxy** está diseñado para guiar a los Testers a través de 2 Etapas (Career Paths). Cada Etapa conlleva ciertos **NIVELES** que el
+Tester debe alcanzar para llegar a su mayor **SENIORITY**:
+
+## QA Engineer (Pruebas Manuales)
+
+Capacidad de realizar análisis, planificación, ejecución y gestión de:
+
+-   Pruebas Manuales de UI
+-   Bases de Datos
+-   API Testing
+
+### 🧪L1
+
+Capaz de realizar tareas (US) sencillas de frontend sin mucha complejidad.
+
+##### Prácticas:
+
+-   Entiende y puede seguir guías y protocolos de prueba previamente definidos.
+-   Identifica errores obvios en la interfaz y reporta con claridad.
+-   Familiarizado con herramientas básicas de testing y reporting.
+-   Capaz de realizar pruebas de regresión siguiendo casos de prueba definidos.
+
+### 🧪L2
+
+Capaz de realizar tareas (US) avanzadas de frontend y también tareas de Backend (Pruebas de Bases de Datos y Pruebas de API).
+
+##### Prácticas:
+
+-   Realiza pruebas exploratorias identificando puntos críticos en las aplicaciones.
+-   Puede diseñar casos de prueba simples basados en requisitos.
+-   Familiarizado con SQL básico para realizar pruebas en Bases de Datos.
+-   Inicia pruebas básicas en APIs usando herramientas como Postman o similares.
+-   Entiende la importancia de ciclos de vida de defectos y los gestiona correctamente.
+
+### 🧪L3
+
+Capaz de realizar tareas (US) de performance y/o diseñar nuevas Historias de Usuario.
+
+##### Prácticas:
+
+-   Diseña y ajusta casos de prueba complejos basados en cambios de requisitos.
+-   Identifica y reporta problemas de rendimiento usando herramientas básicas.
+-   Realiza pruebas exploratorias avanzadas e identifica áreas no cubiertas.
+-   Gestiona los Planes de Prueba (Cobertura, Regresión, Sanity, Smoke) de manera efectiva.
+-   Ofrece guía y mentoría a testers de niveles inferiores (Capacidad de ser Tutor).
+-   Tiene una comprensión básica sobre automatización de pruebas.
+
+## QA Automation Engineer (Pruebas Automatizadas)
+
+Capacidad de realizar análisis, planificación, ejecución y gestión de:
+
+-   Pruebas Automatizadas de E2E
+-   Integration Testing (Aplicando para cualquiera de los Frameworks de automatización de Browsers/Apps)
+
+### 🧪L3
+
+Capaz de realizar tareas (TechDept) para Automatizar pruebas UI de historias implementadas.
+
+##### Prácticas:
+
+-   Capaz de manejar el flujo completo de trabajo ordinario.
+-   Capaz de realizar pruebas Frontend con data sin iteración (hardcodeada).
+-   Capaz de realizar Page-Object-Model básico.
+-   Capaz de realizar controles de versionado de código (conocimiento básico en GIT).
+
+### 🧪L4
+
+Capaz de realizar tareas (TD) para Automatizar pruebas complejas y de integración de historias implementadas.
+
+##### Prácticas:
+
+-   Capacidad de resolución de problemas y conflictos de pruebas (Debugging).
+-   Capaz de realizar pruebas E2E con data en iteración (Parametrizadas).
+-   Capaz de escribir código con Excelentes prácticas y principios (POM, “DRY”, etc.).
+-   Capaz de escribir scripts de prueba con Estructura de Datos, condicionales, bucles, etc.
+-   Capaz de entender y ejecutar Pipelines de Regresión en Continuous Integration (CI).
+-   Capaz de escribir scripts de prueba para intercepción y assertions de API Testing.
+
+### 🧪L5
+
+Capaz de realizar cualquier tarea (TD) de Automatización y gestionar los Planes de Prueba.
+
+##### Prácticas:
+
+-   Capacidad de resolución de conflictos de GIT con facilidad.
+-   Capacidad de resolución de problemas de ambientes y errores de config del Repo.
+-   Capaz de realizar Planes de Prueba generales y para Automatización de pruebas.
+-   Capaz de planificar, armar y hacer funcionar los Repositorios de Automatización de Prueba.
+-   Capaz de configurar integraciones de aplicaciones de Reporte de Prueba con el Repo.
+-   Capaz de realizar pruebas automatizadas de Performance (con ciertas herramientas).
+
+---
+
+### 🧙🏻‍♂️APRENDE Y GANA EXPERIENCIA COMO QA AUTOMATION EN UPEX GALAXY🚀
+
+Suscríbete a un Sprint y trabaja como un QA Automation Engineer!
+
+### 🚩ENTRA EN [UPEXDOCU](https://linktree.com/upexjira) Y BUSCA LAS GUÍAS DE CYPRESS AL GRANO!
+
+---
+
+## CURSO YOUTUBE DE SELENIUM-JAVA AL GRANO:
+
+-   [🛸CURSO: "AUTOMATION SELENIUM-JAVA AL GRANO" (UPEX GALAXY)]()
 
 ### 🧪 Happy Testing
 
