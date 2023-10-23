@@ -8,7 +8,8 @@ on: # This Run is a template. The correct "Run On" should be: Any except QA and 
             - QA
 
 jobs:
-    build:
+    SanityTest:
+        name: Sanity Test
         runs-on: ubuntu-latest
 
         steps:
