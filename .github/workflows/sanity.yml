@@ -1,5 +1,5 @@
-name: 🤖CI run for Test Suite Execution🧪
-run-name: ${{github.actor}}👨🏻‍🔬 runs Suite in ${{github.ref_name}}
+name: 🤖CI run Test Suite Execution🧪
+run-name: ${{github.actor}}👨🏻‍🔬 ran SanityTest in ${{github.ref_name}}
 
 on: # This Run is a template. The correct "Run On" should be: Any except QA and Main
     push:

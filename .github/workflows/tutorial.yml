@@ -1,0 +1,40 @@
+#!ESTE ARCHIVO ES UN TEMPLATE, NO CAMBIARLO EN ABSOLUTO.
+name: 🧪Example Test in CI Pipeline with Cypress
+run-name: ${{github.actor}}👨🏻‍🔬 ran Test in ${{github.ref_name}}
+
+# on:
+#     push:
+#         branches-ignore: [main, QA]
+#*Esto indica que se ejecutará con PUSH o MERGE en cualquier rama que no sea 'main' ni 'QA'
+
+on: [workflow_dispatch] #Esta opción es  para este Tutorial, para que no se ejecute en CI.
+
+jobs:
+    #* Este es un Nombre de este Job, puedes dejarlo como está.
+    TestSuite:
+        #* Este parámetro indica que se correrá en un Sistema Operativo. No cambiar.
+        runs-on: ubuntu-latest
+
+        #todo: Aquí a continuación vamos a definir qué vamos a correr de Postman:
+        steps:
+            #* Este paso, copia y pega literalmente el repo que tenemos.
+            - name: 📘Checkout Repo
+              uses: actions/checkout@v3
+              #* el Name es opcional, e indica el nombre del Step. Uses es la dependencia.
+
+            - name: 💿Set up JAVA 20 with Maven
+              uses: actions/setup-java@v3
+              with:
+                  java-version: '20'
+                  distribution: 'temurin'
+                  cache: maven
+              #* El with se usa para indicar qué parámetro se usa con la dependencia.
+              #* Considera que el with dependerá del uso de la dependencia.
+
+            - name: 🧬Install All Dependencies with Maven
+              run: mvn -B package --file pom.xml
+
+              #! AQUÍ DEBES MODIFICAR el Test Suite a ejecutar.
+              #todo: Agrega el tu path de archivo de prueba para ejecutar:
+            - name: 🧪Run Selenium tests
+              run: mvn clean verify -Dit.test=FirstTest -Dheadless=true
