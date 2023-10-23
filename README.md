@@ -1,4 +1,4 @@
-[![🤖CI Regression in QA🧪](https://github.com/upex-galaxy/L1-seljava-demo/actions/workflows/CI-regressionTest.yml/badge.svg)](https://github.com/upex-galaxy/L1-seljava-demo/actions/workflows/CI-regressionTest.yml)
+[![🤖CI Regression in QA🧪](https://github.com/upex-galaxy/selenium-java/actions/workflows/regression.yml/badge.svg)](https://github.com/galaxy/selenium-java/actions/workflows/regression.yml)
 
 [![vscode-logo]][vscode-site] [![selenium-logo]][selenium-site] [![java-logo]][java-site]
 
