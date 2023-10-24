@@ -8,11 +8,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class GX2_4919_Checkbox_Page {
+public class ExampleCheckboxPage {
     public Get get;
     private WebDriver driver;
 
-    public GX2_4919_Checkbox_Page(WebDriver driver) {
+    public ExampleCheckboxPage(WebDriver driver) {
         this.get = new Get();
         this.driver = driver;
     }

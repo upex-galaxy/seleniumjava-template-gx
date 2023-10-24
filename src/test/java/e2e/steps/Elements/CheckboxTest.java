@@ -1,19 +1,19 @@
 package e2e.steps.Elements;
 
 import e2e.fixtures.TestBase;
-import e2e.page.GX2_4919_Checkbox_Page;
+import e2e.page.ExampleCheckboxPage;
 import java.util.List;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebElement;
 
 @Disabled("Flaky Test, needs review")
-public class GX2_4919_CheckboxTest extends TestBase {
-    public GX2_4919_Checkbox_Page checkboxPage;
+public class CheckboxTest extends TestBase {
+    public ExampleCheckboxPage checkboxPage;
 
     @BeforeEach
     public void setup1() {
         web.get(BASE_URL + "/checkbox");
-        checkboxPage = new GX2_4919_Checkbox_Page(web);
+        checkboxPage = new ExampleCheckboxPage(web);
         String url = web.getCurrentUrl();
         then.shouldBeEqual(url, "https://demoqa.com/checkbox");
     }

@@ -1,4 +1,4 @@
-[![🤖CI Regression in QA🧪](https://github.com/upex-galaxy/selenium-java/actions/workflows/regression.yml/badge.svg)](https://github.com/galaxy/selenium-java/actions/workflows/regression.yml)
+[![🤖CI Regression in QA🧪](https://github.com/upex-galaxy/L1-seljava-demo/actions/workflows/regression.yml/badge.svg)](https://github.com/galaxy/L1-seljava-demo/actions/workflows/regression.yml)
 
 [![vscode-logo]][vscode-site] [![selenium-logo]][selenium-site] [![java-logo]][java-site]
 
@@ -135,30 +135,15 @@ public class SuiteTest extends TestBase {
 
 ### 🚩NORMATIVAS A SEGUIR:
 
-1. Perfecta Nomenclatura del nombre de Archivo de prueba: <br> `{GX-ID}-{StoryShortName}.{extensionFile} ej: GX-50-AgregarItemsAlCart.cy.js`
-2. Archivo de Prueba dentro del directorio del Componente correspondiente, ejemplo: <br> `cypress/e2e/Tests/ComponentName/GX-1-StoryTestSuite.cy.js`.
-3. Buen diseño del Test Suite elaborado (Esto implica que se vean bien el código en general, que al menos funcione).
-4. Tener el Markdown de la US en la carpeta Test-Plan en su correspondiente carpeta Sprint, ejemplo: <br>
-   `cypress/test-plan/in-sprint/sprint-9/userStory.md`<br> Esto implica que cada vez que se trabaje en un Sprint nuevo, se debería crear la carpeta
-   correspondiente "sprint-" + número del sprint, como se muestra en el ejemplo arriba.
-5. NO usar fixture como PageObjectModel sino como Data (es decir, no agarrar elementos Web por fixtures, sino usar el Fixture para iterar Data o
-   reutilizar variables).
-    - Previamente en GX, se usaba el patrón Fixture como POM, porque era fácil de aprender, pero hoy en día las entrevistas técnicas piden PageObject
-      Model de la manera tradicional, sin usar Commands.
-6. Los "Cypress Commands" no es un uso obligatorio; pero si se quiere usar, debería aplicarse para hacer funciones de algoritmos para múltiples suites
-   o para generar precondiciones repetitivas (Background).
-
-7. **En caso de usar Fixtures**: Chequear que el archivo ".json" esté dentro de la carpeta correspondiente al componente, ejemplo: <br>
-   `cypress/fixtures/account/example.json`.
-8. **En caso de usar PageObjectModel**: Chequear que el "Page.js" esté dentro de la carpeta "pages" en la de "support", ejemplo: <br>
-   `cypress/support/pages/example.Page.js`.
-9. **En caso de usar Commands**: Asegurarse de aplicarlo para crear pasos de Precondiciones o Scripts de Algoritmos complejos (NO USAR como Pasos de
-   Acción, eso sería tarea para el POM).
-10. **En caso de usar el CI Pipeline**: Usar únicamente el archivo predeterminado del proyecto `sanity.yml`, y asegurarse de modificarlo correctamente
-    (Solo cambiar el Path del Test Suite y el parámetro de Importación TX para Jira) y no borrar o cambiar nada más, que funcione y pase los Checks.
-    El archivo `regression.yml` se ejecutará automaticamente cuando los cambios hayan mergeado a QA.
-11. **En caso de usar Cucumber**: Chequear que el archivo Gherkin (.feature) y los StepDefinitions (.js) estén correctamente diseñados y que la
-    Ejecución en CI funcione y pase los Checks.
+1. Perfecta Nomenclatura del nombre de Archivo de prueba: <br> `{StoryShortName}Test.java ej: addToCartTest.java`
+2. Archivo de Prueba dentro del directorio de Steps correspondiente, ejemplo: <br> `src/test/java/e2e/steps/FirstTest.java`.
+3. **En caso de usar PageObjectModel**: Chequear que el "Page.java" esté dentro de la carpeta "pages" en la de "support", ejemplo: <br>
+   `src/test/java/e2e/page/ProductsPage.java`.
+4. **En caso de usar el CI Pipeline**: Usar únicamente el archivo predeterminado del proyecto `sanity.yml`, y asegurarse de modificarlo correctamente
+   (Solo cambiar el Path del Test Suite) y no borrar o cambiar nada más, que funcione y pase los Checks. El archivo `regression.yml` se ejecutará
+   automaticamente cuando los cambios hayan mergeado a QA.
+5. **En caso de usar Cucumber**: Chequear que el archivo Gherkin (.feature) y los StepDefinitions (.java) estén correctamente diseñados y que la
+   Ejecución en CI funcione y pase los Checks.
 
 ---
 
