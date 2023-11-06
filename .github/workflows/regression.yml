@@ -1,0 +1,69 @@
+name: 🤖CI run Regression in QA🧪
+run-name: ${{github.actor}}👨🏻‍🔬 ran Regression in ${{github.ref_name}}
+
+on:
+    push:
+        branches: ['QA']
+
+jobs:
+    RegressionTest:
+        name: Regression Testing
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: 💻Checkout
+              uses: actions/checkout@v3
+
+            - name: 💿Set up JAVA 20 with Maven
+              uses: actions/setup-java@v3
+              with:
+                  java-version: '20'
+                  distribution: 'temurin'
+                  cache: maven
+
+            - name: 🧬Install All Dependencies with Maven
+              run: mvn -B package --file pom.xml
+
+            - name: 🧪Run Selenium tests
+              run: mvn clean verify -Dheadless=true
+
+    Create-PullRequest:
+        needs: [RegressionTest]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Create Pull Request
+              uses: actions/github-script@v6
+              with:
+                  script: |
+                      const { repo, owner } = context.repo;
+                      const result = await github.rest.pulls.create({
+                      title: '✅[QA REGRESSION PASSED]: Ready to Merge into MAIN',
+                      owner,
+                      repo,
+                      head: '${{ github.ref_name }}',
+                      base: 'main',
+                      body: [
+                          'Update branch by Automation Pipeline',
+                          '- (CI) Build Test Execution is Done✅',
+                          '- (CI) Integration-Regression Report is Done✅',
+                          '- (TestResults) No Conflicts in Repo Branch QA✅ '
+                      ].join('\n')
+                      });
+                      github.rest.issues.addLabels({
+                      owner,
+                      repo,
+                      issue_number: result.data.number,
+                      labels: ['autoPullRequest']
+                      });
+
+    AutoMerge-into-Main:
+        needs: [Create-PullRequest]
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🧬Merge QA -> MAIN
+              uses: devmasx/merge-branch@master
+              with:
+                  type: now
+                  label_name: 'autoPullRequest'
+                  target_branch: 'main' #ESTE ES LA RAMA PRINCIPAL DEL REPOSITORIO PRESENTE
+                  github_token: ${{ github.token }}

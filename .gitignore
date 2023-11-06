@@ -1,0 +1,29 @@
+# Java
+*.class
+**/*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.log
+*.ipr
+*.iws
+.idea/
+target/
+bin/
+out/
+build/
+dist/
+logs/
+screenshots/
+*.swp
+*~
+/.settings
+/.project
+/.classpath
+
+# Maven
+log/
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
