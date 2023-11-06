@@ -31,12 +31,12 @@ public class Locator {
     }
 
     public WebElement ByTestId(String testid_name) {
-        String data_test_id = String.format("[data-testid=%s]", testid_name);
+        String data_test_id = String.format("[data-test=%s]", testid_name);
         return this.selenium.findElement(By.cssSelector(data_test_id));
     }
 
     public List<WebElement> ByTestIds(String testid_name) {
-        String data_test_id = String.format("[data-testid=%s]", testid_name);
+        String data_test_id = String.format("[data-test=%s]", testid_name);
         return this.selenium.findElements(By.cssSelector(data_test_id));
     }
 
