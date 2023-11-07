@@ -1,4 +1,4 @@
-package e2e.pages.Ely;
+package e2e.pages;
 
 import java.util.List;
 import java.util.function.Supplier;

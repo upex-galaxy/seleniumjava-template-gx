@@ -1,4 +1,4 @@
-package e2e.pages.Ely;
+package e2e.pages;
 
 import java.util.function.Supplier;
 
@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 
 import e2e.utils.Action;
 import e2e.utils.Locator;
-import e2e.utils.Assertion;
 
 //*  Tech Debt: GX3-253 = https://upexgalaxy26.atlassian.net/browse/GX3-253
 public class LoginPage {
@@ -44,12 +43,5 @@ public class LoginPage {
     // * MÉTODOS CON LOS SELECTORES => métodos public void/String/WebElement/Numbers
     public void submitLogin() {
         this.Do.click(this.loginSubmitButton.get());
-    }
-
-    // Shortcut
-    public void login() {
-        this.enterUsername("standard_user");
-        this.enterPassword("secret_sauce");
-        this.submitLogin();
     }
 }
