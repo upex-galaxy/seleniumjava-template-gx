@@ -2,8 +2,8 @@ package e2e.steps.Product;
 
 import org.junit.jupiter.api.*;
 import e2e.fixtures.TestBase;
-import e2e.pages.Ely.LoginPage;
-import e2e.pages.Ely.ProductListPage;
+import e2e.pages.LoginPage;
+import e2e.pages.ProductListPage;
 
 public class ElyProductDetailsTest extends TestBase {
 
@@ -12,7 +12,7 @@ public class ElyProductDetailsTest extends TestBase {
     public void precondition() {
         LoginPage loginPage = new LoginPage(web, get, Do);
         web.get(BASE_URL);
-        loginPage.login();
+        loginPage.Login();
         then.shouldContain(web.getCurrentUrl(), "inventory.html");
     }
 

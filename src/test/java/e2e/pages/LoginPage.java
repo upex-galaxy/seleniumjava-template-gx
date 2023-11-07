@@ -44,4 +44,10 @@ public class LoginPage {
     public void submitLogin() {
         this.Do.click(this.loginSubmitButton.get());
     }
+
+    public void Login() {
+        this.enterUsername("standard_user");
+        this.enterPassword("secret_sauce");
+        this.submitLogin();
+    }
 }
