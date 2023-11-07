@@ -9,7 +9,7 @@ import e2e.utils.Action;
 import e2e.utils.Assertion;
 
 public class TestBase {
-    public static final String BASE_URL = "https://opensource-demo.orangehrmlive.com/web/index.php";
+    public static final String BASE_URL = "https://www.saucedemo.com";
     private static final DriverManager MANAGER = new DriverManager();
     public WebDriver web;
     public Locator get;

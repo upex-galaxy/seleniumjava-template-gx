@@ -28,5 +28,4 @@ public class ElyProductDetailsTest extends TestBase {
 
         PLP.addProductToCart(givenProduct);
     }
-
 }
