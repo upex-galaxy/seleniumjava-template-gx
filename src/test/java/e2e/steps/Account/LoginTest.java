@@ -12,7 +12,7 @@ public class LoginTest extends TestBase {
 
     @BeforeEach
     public void precondition() {
-        web.get("https://www.saucedemo.com");
+        web.get(BASE_URL);
     }
 
     @Test
