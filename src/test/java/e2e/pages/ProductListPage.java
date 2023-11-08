@@ -11,27 +11,27 @@ import e2e.utils.Locator;
 //*----- PAGE OBJECT MODEL ---- */
 public class ProductListPage {
 
-    private WebDriver web;
+    // private WebDriver web;
     private Locator get;
-    private Supplier<WebElement> inventoryList;
+    // private Supplier<WebElement> inventoryList;
     private Supplier<List<WebElement>> productItems;
     private Supplier<List<WebElement>> productPrices;
-    private Supplier<List<WebElement>> productDescs;
-    private Supplier<List<WebElement>> productTitles;
+    // private Supplier<List<WebElement>> productDescs;
+    // private Supplier<List<WebElement>> productTitles;
     private Supplier<List<WebElement>> addToCartButton;
     private Supplier<List<WebElement>> removeButton;
 
     // * */ 3 PARTES DEL POM:
     // ? INSTANCIAR EL LOCATOR DE ELEMENTS [selenium y otros] (CONSTRUCTOR):
     public ProductListPage(WebDriver driver, Locator locator) {
-        this.web = driver;
+        // this.web = driver;
         this.get = locator;
         // ? SELECTORES/PROPIEDADES (dentro Constructor):
-        this.inventoryList = () -> this.get.ById("inventory_container");
+        // this.inventoryList = () -> this.get.ById("inventory_container");
         this.productItems = () -> this.get.ByClasses("inventory_item");
         this.productPrices = () -> this.get.ByClasses("inventory_item_price");
-        this.productDescs = () -> this.get.ByClasses("inventory_item_desc");
-        this.productTitles = () -> this.get.ByClasses("inventory_item_name ");
+        // this.productDescs = () -> this.get.ByClasses("inventory_item_desc");
+        // this.productTitles = () -> this.get.ByClasses("inventory_item_name ");
         this.addToCartButton = () -> this.get.Selectors("[data-test*=add-to-cart]");
         this.removeButton = () -> this.get.Selectors("[data-test*=remove]");
         // this.addToCartButton
