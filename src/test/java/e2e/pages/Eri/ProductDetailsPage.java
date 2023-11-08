@@ -1,5 +1,6 @@
 package e2e.pages.Eri;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 import org.openqa.selenium.WebDriver;
@@ -19,13 +20,14 @@ public class ProductDetailsPage {
     private Supplier<WebElement> usernameInput;
     private Supplier<WebElement> passwordInput;
     private Supplier<WebElement> loginSubmitButton;
-    private Supplier<WebElement> productImage;
-    private Supplier<WebElement> productTitle;
-    private Supplier<WebElement> productNameLabel;
-    private Supplier<WebElement> productDescription;
-    private Supplier<WebElement> productPrice;
-    private Supplier<WebElement> backButton;
-    private Supplier<WebElement> addToCartButton;
+    public Supplier<List<WebElement>> selectProductImage;
+    public Supplier<List<WebElement>> selectProductTitle;
+    public Supplier<WebElement> productTitle;
+    public Supplier<WebElement> productDescription;
+    public Supplier<WebElement> productImage;
+    public Supplier<WebElement> productPrice;
+    public Supplier<WebElement> selectBackButton;
+    public Supplier<WebElement> selectAddToCartButton;
 
     // * #1 ARMAR EL CONSTRUCTOR con WebDriver (para usar los selectores/Locators)
     public ProductDetailsPage(WebDriver driver, Locator locator, Action action) {
@@ -38,16 +40,19 @@ public class ProductDetailsPage {
         this.usernameInput = () -> this.get.ByTestId("username");
         this.passwordInput = () -> this.get.ByTestId("password");
         this.loginSubmitButton = () -> this.get.ByTestId("login-button");
-        this.productImage = () -> this.get.Selector("div.inventory_item_img");
-        this.productTitle = () -> this.get.ByClass("div.inventory_item_name");
-        this.productNameLabel = () -> this.get.ByClass("div.inventory_details_name.large_size");
+        this.selectProductImage = () -> this.get.Selectors("[div.inventory_item_img]");
+        this.selectProductTitle = () -> this.get.Selectors("[div.inventory_item_name]");
+        this.productTitle = () -> this.get.ByClass("div.inventory_details_name.large_size>div");
         this.productDescription = () -> this.get.ByClass("div.inventory_details_desc.large_size");
+        this.productImage = () -> this.get.ByClass("div.inventory_details_img");
         this.productPrice = () -> this.get.ByClass(".inventory_details_price");
-        this.backButton = () -> this.get.ByTestId("#remove-sauce-labs-backpack");
-        this.addToCartButton = () -> this.get.ByTestId("#add-to-cart-sauce-labs-backpack");
+        this.selectBackButton = () -> this.get.ByTestId("#remove-sauce-labs-backpack");
+        this.selectAddToCartButton = () -> this.get.ByTestId("#add-to-cart-sauce-labs-backpack");
     }
 
     // * #3 MÉTODOS CON LOS SELECTORES => métodos public
+    Assertion assertion = new Assertion();
+
     public void enterUsername(String value) {
         this.Do.enterValue(this.usernameInput.get(), value);
     }
@@ -61,31 +66,35 @@ public class ProductDetailsPage {
     }
 
     public void selectProductImage() {
-        this.Do.click(this.productImage.get());
+        this.Do.click(this.selectProductImage.get().get(0));
     }
 
     public void selectProductTitle() {
-        this.Do.click(this.productTitle.get());
+        this.Do.click(this.selectProductTitle.get().get(0));
     }
 
-    public void selectProductNameLabel() {
-        this.Do.click(this.productNameLabel.get());
+    public void viewProductTitle() {
+        this.assertion.shouldBeVisible(this.productTitle.get());
     }
 
-    public void selectProductDescription() {
-        this.Do.click(this.productDescription.get());
+    public void viewProductDescription() {
+        this.assertion.shouldBeVisible(this.productDescription.get());
     }
 
-    public void selectProductPrice() {
-        this.Do.click(this.productPrice.get());
+    public void viewProductPrice() {
+        this.assertion.shouldBeVisible(this.productPrice.get());
+    }
+
+    public void viewProductImage() {
+        this.assertion.shouldBeVisible(this.productImage.get());
     }
 
     public void selectBackButton() {
-        this.Do.click(this.backButton.get());
+        this.Do.click(this.selectBackButton.get());
     }
 
     public void selectAddToCartButton() {
-        this.Do.click(this.addToCartButton.get());
+        this.Do.click(this.selectAddToCartButton.get());
     }
 
     // * Shortcut:
@@ -96,9 +105,10 @@ public class ProductDetailsPage {
         this.validate.shouldContain(web.getCurrentUrl(), "inventory.html");
         this.selectProductImage();
         this.selectProductTitle();
-        this.selectProductNameLabel();
-        this.selectProductDescription();
-        this.selectProductPrice();
+        this.viewProductTitle();
+        this.viewProductDescription();
+        this.viewProductImage();
+        this.viewProductPrice();
         this.selectBackButton();
         this.selectAddToCartButton();
     }
