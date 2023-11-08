@@ -19,6 +19,7 @@ public class ProductListPage {
     private Supplier<List<WebElement>> productDescs;
     private Supplier<List<WebElement>> productTitles;
     private Supplier<List<WebElement>> addToCartButton;
+    private Supplier<List<WebElement>> removeButton;
 
     // * */ 3 PARTES DEL POM:
     // ? INSTANCIAR EL LOCATOR DE ELEMENTS [selenium y otros] (CONSTRUCTOR):
@@ -32,15 +33,18 @@ public class ProductListPage {
         this.productDescs = () -> this.get.ByClasses("inventory_item_desc");
         this.productTitles = () -> this.get.ByClasses("inventory_item_name ");
         this.addToCartButton = () -> this.get.Selectors("[data-test*=add-to-cart]");
+        this.removeButton = () -> this.get.Selectors("[data-test*=remove]");
         // this.addToCartButton
         // this.sortingDropdown
         // this.burgerMenu
     }
 
     // ? CREAR MÉTODOS QUE HACE EL USUARIO EN EL COMPONENTE (u otras métodos)
-    public void addProductToCart(Integer productIndex) {
-        WebElement button = this.addToCartButton.get().get(productIndex);
-        button.click();
+
+    // *---- GETTERS ---- */
+    public WebElement getProductItem(Integer productIndex) {
+        WebElement item = this.productItems.get().get(productIndex);
+        return item;
     }
 
     public String getProductPrice(Integer productIndex) {
@@ -48,5 +52,23 @@ public class ProductListPage {
         String priceValue = price.getText();
         return priceValue;
     }
+
+    // *---- MAIN ACTIONS ---- */
+    public void addProductToCart(Integer productIndex) {
+        WebElement button = this.addToCartButton.get().get(productIndex);
+        button.click();
+    }
+
+    public void removeProductFromCart(Integer productIndex) {
+        WebElement button = this.removeButton.get().get(productIndex);
+        button.click();
+    }
+
+    // *---- Navigators ---- */
+    public void gotoProductDetails(WebElement givenProduct) {
+        WebElement item = this.get.WithinElement(givenProduct, "img");
+        item.click();
+    }
+
     // seleccionarProducto(){ obtener el elemento del producto}
 }

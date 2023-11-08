@@ -1,6 +1,8 @@
 package e2e.steps.Product;
 
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebElement;
+
 import e2e.fixtures.TestBase;
 import e2e.pages.LoginPage;
 import e2e.pages.ProductListPage;
@@ -27,5 +29,10 @@ public class ElyProductDetailsTest extends TestBase {
         System.out.println(priceValue);
 
         PLP.addProductToCart(givenProduct);
+
+        WebElement givenItem = PLP.getProductItem(givenProduct);
+
+        PLP.gotoProductDetails(givenItem);
+
     }
 }
