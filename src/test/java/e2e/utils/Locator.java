@@ -18,6 +18,11 @@ public class Locator {
         return this.selenium.findElement(By.cssSelector(css_selector));
     }
 
+    public WebElement ReactTool(String property_name) {
+        String locator = String.format("[data-react-toolbox=\"%s\"]", property_name);
+        return this.selenium.findElement(By.cssSelector(locator));
+    }
+
     public List<WebElement> Selectors(String css_selector) {
         return this.selenium.findElements(By.cssSelector(css_selector));
     }
@@ -112,8 +117,12 @@ public class Locator {
         return this.selenium.findElements(By.xpath(elementToFind));
     }
 
-    public List<WebElement> WithinElement(WebElement parent, String target_selector) {
+    public List<WebElement> WithinElements(WebElement parent, String target_selector) {
         return parent.findElements(By.cssSelector(target_selector));
+    }
+
+    public WebElement WithinElement(WebElement parent, String target_selector) {
+        return parent.findElement(By.cssSelector(target_selector));
     }
 
     public WebElement WithinTextElement(String parent_attr, String target_text) {
