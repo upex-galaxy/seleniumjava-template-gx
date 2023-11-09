@@ -21,7 +21,7 @@ public class DatePickerChallengeTest extends TestBase {
 
     @Test
     @DisplayName("Take a Departing Date and Returning Date")
-    public void datePicker() throws InterruptedException, IOException {
+    public void datePicker(TestInfo testInfo) throws InterruptedException, IOException {
         WebElement departingDate = get.FilterByText("Departing", 2);
         WebElement departingDateInput = get.WithinElement(departingDate, "input");
         // Abrir DatePicker:
@@ -54,7 +54,7 @@ public class DatePickerChallengeTest extends TestBase {
             actualMonth = getMonthTitle();
 
             if (actualMonth.contains("February")) {
-                Do.screenshot();
+                Do.screenshot(testInfo);
                 break;
             }
         }

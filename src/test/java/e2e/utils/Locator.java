@@ -2,6 +2,8 @@ package e2e.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
 import java.util.List;
 import org.openqa.selenium.By;
 
@@ -153,5 +155,11 @@ public class Locator {
     public List<WebElement> FilterByNotElement(String target_selector, String filter_selector) {
         String locator = String.format("%s:not(%s)", target_selector, filter_selector);
         return this.selenium.findElements(By.cssSelector(locator));
+    }
+
+    // * other Locators for specific cases */
+    public Select Dropdown(WebElement dropdownSelectBox) {
+        Select dropdown = new Select(dropdownSelectBox);
+        return dropdown;
     }
 }
