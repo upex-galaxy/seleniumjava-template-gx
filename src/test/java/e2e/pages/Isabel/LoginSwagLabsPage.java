@@ -7,7 +7,7 @@ import e2e.utils.Action;
 import e2e.utils.Locator;
 
 //*  Tech Debt: GX3-253 = https://upexgalaxy26.atlassian.net/browse/GX3-253
-public class SwagLabsLoginPage {
+public class LoginSwagLabsPage {
     WebDriver web;
     Locator get;
     Action Do;
@@ -15,7 +15,7 @@ public class SwagLabsLoginPage {
     private Supplier<WebElement> passwordInput;
     private Supplier<WebElement> loginSubmitButton;
 
-    public SwagLabsLoginPage(WebDriver driver, Locator locator, Action action) {
+    public LoginSwagLabsPage(WebDriver driver, Locator locator, Action action) {
         this.web = driver;
         this.get = locator;
         this.Do = action;

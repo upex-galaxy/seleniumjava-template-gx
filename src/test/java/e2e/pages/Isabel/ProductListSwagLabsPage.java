@@ -6,14 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import e2e.utils.Locator;
 
-public abstract class ProductListPage {
+public class ProductListSwagLabsPage {
     private Locator get;
     private Supplier<List<WebElement>> productItems;
     private Supplier<List<WebElement>> productPrices;
     private Supplier<List<WebElement>> addToCartButton;
     private Supplier<List<WebElement>> removeButton;
 
-    public ProductListPage(WebDriver driver, Locator locator) {
+    public ProductListSwagLabsPage(WebDriver driver, Locator locator) {
         this.get = locator;
         this.productItems = () -> this.get.ByClasses("inventory_item");
         this.productPrices = () -> this.get.ByClasses("inventory_item_price");
