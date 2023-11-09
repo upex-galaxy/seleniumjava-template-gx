@@ -20,7 +20,7 @@ public class ProductDetailsPage {
     private Supplier<WebElement> usernameInput;
     private Supplier<WebElement> passwordInput;
     private Supplier<WebElement> loginSubmitButton;
-    public Supplier<List<WebElement>> selectProductImage;
+    List<WebElement> selectProductImages;
     public Supplier<List<WebElement>> selectProductTitle;
     public Supplier<WebElement> productTitle;
     public Supplier<WebElement> productDescription;
@@ -40,8 +40,8 @@ public class ProductDetailsPage {
         this.usernameInput = () -> this.get.ByTestId("username");
         this.passwordInput = () -> this.get.ByTestId("password");
         this.loginSubmitButton = () -> this.get.ByTestId("login-button");
-        this.selectProductImage = () -> this.get.Selectors("[div.inventory_item_img]");
-        this.selectProductTitle = () -> this.get.Selectors("[div.inventory_item_name]");
+        this.selectProductImages = get.ByClasses("inventory_item_img");
+        this.selectProductTitle = () -> get.ByClasses(".inventory_item_name");
         this.productTitle = () -> this.get.ByClass("div.inventory_details_name.large_size>div");
         this.productDescription = () -> this.get.ByClass("div.inventory_details_desc.large_size");
         this.productImage = () -> this.get.ByClass("div.inventory_details_img");
@@ -51,7 +51,6 @@ public class ProductDetailsPage {
     }
 
     // * #3 MÉTODOS CON LOS SELECTORES => métodos public
-    Assertion assertion = new Assertion();
 
     public void enterUsername(String value) {
         this.Do.enterValue(this.usernameInput.get(), value);
@@ -66,27 +65,29 @@ public class ProductDetailsPage {
     }
 
     public void selectProductImage() {
-        this.Do.click(this.selectProductImage.get().get(0));
+        if (!selectProductImages.isEmpty()) {
+            this.Do.click(selectProductImages.get(0)); // Selecciona el primer elemento si existe
+        }
     }
 
     public void selectProductTitle() {
         this.Do.click(this.selectProductTitle.get().get(0));
     }
 
-    public void viewProductTitle() {
-        this.assertion.shouldBeVisible(this.productTitle.get());
+    public void validateProductTitle() {
+        this.validate.shouldBeVisible(this.productTitle.get());
     }
 
-    public void viewProductDescription() {
-        this.assertion.shouldBeVisible(this.productDescription.get());
+    public void validateProductDescription() {
+        this.validate.shouldBeVisible(this.productDescription.get());
     }
 
-    public void viewProductPrice() {
-        this.assertion.shouldBeVisible(this.productPrice.get());
+    public void validateProductPrice() {
+        this.validate.shouldBeVisible(this.productPrice.get());
     }
 
-    public void viewProductImage() {
-        this.assertion.shouldBeVisible(this.productImage.get());
+    public void validateProductImage() {
+        this.validate.shouldBeVisible(this.productImage.get());
     }
 
     public void selectBackButton() {
@@ -98,18 +99,19 @@ public class ProductDetailsPage {
     }
 
     // * Shortcut:
-    public void productDetailsPage() {
+    public void addProductToCart() {
         this.enterUsername("standard_user");
         this.enterPassword("secret_sauce");
         this.submitLogin();
         this.validate.shouldContain(web.getCurrentUrl(), "inventory.html");
         this.selectProductImage();
         this.selectProductTitle();
-        this.viewProductTitle();
-        this.viewProductDescription();
-        this.viewProductImage();
-        this.viewProductPrice();
-        this.selectBackButton();
+        this.validateProductTitle();
+        this.validateProductDescription();
+        this.validateProductImage();
+        this.validateProductPrice();
         this.selectAddToCartButton();
+        this.selectBackButton();
+
     }
 }
