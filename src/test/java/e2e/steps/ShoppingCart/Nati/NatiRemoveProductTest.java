@@ -5,11 +5,11 @@ import java.io.IOException;
 import org.junit.jupiter.api.*;
 import e2e.fixtures.TestBase;
 import e2e.pages.LoginPage;
-import e2e.pages.NatiProductsPage;
+import e2e.pages.Nati.NatiProductsPage;
 
 //* TECH DEB: GX3-296 https://upexgalaxy26.atlassian.net/browse/GX3-296
 
-public class NatiRemoveProduct extends TestBase {
+public class NatiRemoveProductTest extends TestBase {
 
     private NatiProductsPage productsPage;
 
@@ -25,17 +25,17 @@ public class NatiRemoveProduct extends TestBase {
         loginPage.enterPassword("secret_sauce");
         loginPage.submitLogin();
 
-        productsPage.addBackpack();
-        productsPage.addBikeLight();
+        productsPage.addItem(0);
+        productsPage.addItem(1);
     }
 
     @Test
     @DisplayName("GX3-296 | TC1: Validar que remueve un producto del carrito")
     public void removeItemSucessfully() throws InterruptedException {
-
-        productsPage.removeBackpack();
+        productsPage.removeItem(0);
         then.shouldBeTrue(productsPage.getItemsCount() == 1);
-        Thread.sleep(3000);
+        then.shouldBeVisible(productsPage.getAddToCartButton(0));
+        Thread.sleep(2000);
     }
 
 }
