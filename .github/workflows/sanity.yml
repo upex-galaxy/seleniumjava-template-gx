@@ -27,4 +27,4 @@ jobs:
               run: mvn -B package --file pom.xml
 
             - name: 🧪Run Selenium tests
-              run: mvn clean verify -Dit.test=LoginTest -Dheadless=true
+              run: mvn clean verify -Dit.test=NatiRemoveProductTest -Dheadless=true
