@@ -5,20 +5,28 @@ import java.util.function.Supplier;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import e2e.utils.Locator;
+import e2e.utils.Action;
 
 public class ProductListSwagLabsPage {
-    private Locator get;
+    WebDriver web;
+    Locator get;
+    Action Do;
+
     private Supplier<List<WebElement>> productItems;
     private Supplier<List<WebElement>> productPrices;
     private Supplier<List<WebElement>> addToCartButton;
     private Supplier<List<WebElement>> removeButton;
+    private Supplier<WebElement> goToShoppinCart;
 
-    public ProductListSwagLabsPage(WebDriver driver, Locator locator) {
+    public ProductListSwagLabsPage(WebDriver driver, Locator locator, Action action) {
         this.get = locator;
+        this.web = driver;
+        this.Do = action;
         this.productItems = () -> this.get.ByClasses("inventory_item");
         this.productPrices = () -> this.get.ByClasses("inventory_item_price");
         this.addToCartButton = () -> this.get.Selectors("[data-test*=add-to-cart]");
         this.removeButton = () -> this.get.Selectors("[data-test*=remove]");
+        this.goToShoppinCart = () -> this.get.ByClass("shopping_cart_link");
     }
 
     // ----------- GETTERS ---------------------------------------------
@@ -44,10 +52,9 @@ public class ProductListSwagLabsPage {
         button.click();
     }
 
-    // ----------- Navigators ---------------------------------------------
-    public void gotoProductDetails(WebElement givenProduct) {
-        WebElement item = this.get.WithinElement(givenProduct, "img");
-        item.click();
+    // Added
+    public void navegateToChoppinCart() {
+        this.Do.click(this.goToShoppinCart.get());
     }
 
     // seleccionarProducto(){ obtener el elemento del producto}

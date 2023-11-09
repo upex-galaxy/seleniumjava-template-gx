@@ -5,7 +5,7 @@ import e2e.fixtures.TestBase;
 import e2e.pages.LoginPage;
 import e2e.pages.Isabel.LoginSwagLabsPage;
 import e2e.pages.Isabel.ProductListSwagLabsPage;
-import e2e.pages.Isabel.ViewShoppingCartItemsPage;
+// import e2e.pages.Isabel.ViewShoppingCartItemsPage;
 
 public class ViewShoppingCartItemsTest extends TestBase {
     @BeforeEach
@@ -17,10 +17,11 @@ public class ViewShoppingCartItemsTest extends TestBase {
         then.shouldContain(web.getCurrentUrl(), "inventory.html");
 
         // * The user has added products to the cart
-        ProductListSwagLabsPage PLP = new ProductListSwagLabsPage(web, get);
+        ProductListSwagLabsPage PLP = new ProductListSwagLabsPage(web, get, Do);
         PLP.addProductToCart(0);
         PLP.addProductToCart(2);
         PLP.addProductToCart(3);
+        PLP.navegateToChoppinCart();
     }
 
     @Test
