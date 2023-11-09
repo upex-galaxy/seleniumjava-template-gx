@@ -22,7 +22,7 @@ public class LoginTest extends TestBase {
 
     @Test
     @Severity(BLOCKER)
-    @Issue("GX3-1")
+    @Issue("https://upexgalaxy26.atlassian.net/browse/GX3-253")
     @DisplayName("TC1: Validar Login exitoso")
     @Description("Este caso de prueba va a validar que el usuario pueda iniciar sesión exitosamente")
     public void login(TestInfo testInfo) throws InterruptedException, IOException {
@@ -36,10 +36,10 @@ public class LoginTest extends TestBase {
         });
         Allure.step("Step 3: Hacer click en el botón en Login", (step) -> {
             loginPage.submitLogin();
-            Do.screenshot(testInfo);
         });
         Allure.step("Resultado Esperado: Debería iniciar sesión exitosamente y redirigirse al PLP", (step) -> {
             then.shouldContain(web.getCurrentUrl(), "inventory.html");
+            Do.screenshot(testInfo);
         });
     }
 }
