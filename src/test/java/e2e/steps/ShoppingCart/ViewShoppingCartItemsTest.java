@@ -24,8 +24,8 @@ public class ViewShoppingCartItemsTest extends TestBase {
         // 2. The user has added products to the cart
         ProductListSwagLabsPage PLP = new ProductListSwagLabsPage(web, get, Do);
         PLP.addProductToCart(0);
-        PLP.addProductToCart(2);
-        PLP.addProductToCart(3);
+        // PLP.addProductToCart(2);
+        // PLP.addProductToCart(3);
         PLP.navegateToChoppingCart();
 
         // The user has completed the "Checkout-Step-One" by clicking the "Continue"
@@ -61,4 +61,16 @@ public class ViewShoppingCartItemsTest extends TestBase {
         overview.cancelOrder();
         then.shouldContain(web.getCurrentUrl(), "inventory.html");
     }
+
+    @Test
+    @DisplayName("TC04: All details related to the purchase should be included")
+    public void checkDetailsPurchase() {
+        OverviewFinalPaymentPage overview = new OverviewFinalPaymentPage(get, Do);
+        ProductListSwagLabsPage PLP = new ProductListSwagLabsPage(web, get, Do);
+        String valuePriceProductOverview = overview.getProductPrice();
+        String valuePriceProductPLP = PLP.getProductPrice(0);
+        then.shouldBeEqual(valuePriceProductPLP, valuePriceProductOverview);
+
+    }
+
 }
