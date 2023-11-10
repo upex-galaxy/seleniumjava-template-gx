@@ -16,7 +16,7 @@ public class ProductListSwagLabsPage {
     private Supplier<List<WebElement>> productPrices;
     private Supplier<List<WebElement>> addToCartButton;
     private Supplier<List<WebElement>> removeButton;
-    private Supplier<WebElement> goToShoppinCart;
+    private Supplier<WebElement> goToShoppingCart;
 
     public ProductListSwagLabsPage(WebDriver driver, Locator locator, Action action) {
         this.get = locator;
@@ -26,7 +26,7 @@ public class ProductListSwagLabsPage {
         this.productPrices = () -> this.get.ByClasses("inventory_item_price");
         this.addToCartButton = () -> this.get.Selectors("[data-test*=add-to-cart]");
         this.removeButton = () -> this.get.Selectors("[data-test*=remove]");
-        this.goToShoppinCart = () -> this.get.ByClass("shopping_cart_link");
+        this.goToShoppingCart = () -> this.get.ByClass("shopping_cart_link");
     }
 
     // ----------- GETTERS ---------------------------------------------
@@ -53,8 +53,8 @@ public class ProductListSwagLabsPage {
     }
 
     // Added
-    public void navegateToChoppinCart() {
-        this.Do.click(this.goToShoppinCart.get());
+    public void navegateToChoppingCart() {
+        this.Do.click(this.goToShoppingCart.get());
     }
 
     // seleccionarProducto(){ obtener el elemento del producto}
