@@ -1,11 +1,9 @@
 package e2e.fixtures.Eri;
 
+import e2e.fixtures.Eri.TestBase;
 import java.time.Duration;
-
 import org.junit.jupiter.api.*;
-
 import org.openqa.selenium.WebDriver;
-
 import e2e.fixtures.DriverManager;
 import e2e.utils.Action;
 import e2e.utils.Assertion;
