@@ -1,9 +1,7 @@
 package e2e.steps.ShoppingCart;
 
-import javax.management.DescriptorKey;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebElement;
-
 import e2e.fixtures.TestBase;
 import e2e.pages.Isabel.LoginSwagLabsPage;
 import e2e.pages.Isabel.ProductListSwagLabsPage;
@@ -24,8 +22,8 @@ public class ViewShoppingCartItemsTest extends TestBase {
         // 2. The user has added products to the cart
         ProductListSwagLabsPage PLP = new ProductListSwagLabsPage(web, get, Do);
         PLP.addProductToCart(0);
-        // PLP.addProductToCart(2);
-        // PLP.addProductToCart(3);
+        PLP.addProductToCart(2);
+        PLP.addProductToCart(3);
         PLP.navegateToChoppingCart();
 
         // The user has completed the "Checkout-Step-One" by clicking the "Continue"
@@ -70,7 +68,6 @@ public class ViewShoppingCartItemsTest extends TestBase {
         String valuePriceProductOverview = overview.getProductPrice();
         String valuePriceProductPLP = PLP.getProductPrice(0);
         then.shouldBeEqual(valuePriceProductPLP, valuePriceProductOverview);
-
     }
 
 }
