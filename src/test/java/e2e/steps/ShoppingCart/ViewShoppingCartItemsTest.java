@@ -1,20 +1,19 @@
 package e2e.steps.ShoppingCart;
 
 import javax.management.DescriptorKey;
-
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebElement;
+
 import e2e.fixtures.TestBase;
 import e2e.pages.Isabel.LoginSwagLabsPage;
-import e2e.pages.Isabel.OverviewPage;
 import e2e.pages.Isabel.ProductListSwagLabsPage;
 import e2e.pages.Isabel.UserInformationPage;
-import e2e.pages.LoginPage;
 import e2e.pages.Isabel.DescriptopnProductPage;
-// import e2e.pages.Isabel.ViewShoppingCartItemsPage;
+import e2e.pages.Isabel.OverviewFinalPaymentPage;
 
 public class ViewShoppingCartItemsTest extends TestBase {
     @BeforeEach
-    @DisplayName("Preconditions: 1. The user is logged in; 2. The user has added products to the cart; 3. The user has completed the Checkout-Step-One by clicking the Continue button")
+    @DisplayName("Preconditions: The user is logged in; has added products to the cart; has completed the Checkout-Step-One by clicking the Continue button")
     public void preconditions() {
         // 1. The user is logged in
         LoginSwagLabsPage loginPage = new LoginSwagLabsPage(web, get, Do);
@@ -41,13 +40,25 @@ public class ViewShoppingCartItemsTest extends TestBase {
 
     @Test
     @DisplayName("TC01: The user should be able to complete the purchase")
-    public void checkoutComplete() {
-        OverviewPage overview = new OverviewPage(get, Do);
+    public void checkoutCompleted() {
+        OverviewFinalPaymentPage overview = new OverviewFinalPaymentPage(get, Do);
         overview.finishOrder();
         then.shouldContain(web.getCurrentUrl(), "checkout-complete.html");
     }
 
-    // @Test
-    // @DisplayName("TC02: The user should not complete the purchase when the Cancel
-    // button is selected")
+    @Test
+    @DisplayName("TC02: A friendly message should appear confirming the completion of the purchase")
+    public void showConfirmationCompletionMessage() {
+        OverviewFinalPaymentPage overview = new OverviewFinalPaymentPage(get, Do);
+        WebElement confirmationMessageElement = overview.getConfirmationCompletionMessage();
+        then.shouldBeVisible(confirmationMessageElement);
+    }
+
+    @Test
+    @DisplayName("TC03: The user should not complete the purchase when the Cancel button is selected")
+    public void checkoutCanceled() {
+        OverviewFinalPaymentPage overview = new OverviewFinalPaymentPage(get, Do);
+        overview.cancelOrder();
+        then.shouldContain(web.getCurrentUrl(), "inventory.html");
+    }
 }
