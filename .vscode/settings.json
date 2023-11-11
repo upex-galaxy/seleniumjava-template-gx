@@ -73,6 +73,5 @@
 	"githubPullRequests.ignoredPullRequestBranches": ["main"],
 	"java.configuration.updateBuildConfiguration": "interactive",
 	"java.compile.nullAnalysis.mode": "automatic",
-	"maven.terminal.useJavaHome": true,
-	"cSpell.words": ["lastname", "LOGEADO"]
+	"maven.terminal.useJavaHome": true
 }

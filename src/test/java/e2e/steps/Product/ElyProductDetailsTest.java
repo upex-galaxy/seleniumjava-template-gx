@@ -6,7 +6,11 @@ import org.openqa.selenium.WebElement;
 import e2e.fixtures.TestBase;
 import e2e.pages.LoginPage;
 import e2e.pages.ProductListPage;
+import io.qameta.allure.*;
 
+@Epic("ProductDetailsPage")
+@Feature("Cart")
+@Story("GX3-2: User can add products to the Cart")
 public class ElyProductDetailsTest extends TestBase {
 
     @BeforeEach
@@ -19,20 +23,25 @@ public class ElyProductDetailsTest extends TestBase {
     }
 
     @Test
+    @Tag("Smoke")
+    @Issue("https://upexgalaxy26.atlassian.net/browse/GX3-253")
     @DisplayName("TC1: Validar agregar producto al SCP")
-    public void addToCart() {
+    public void addToCart(TestInfo testInfo) {
         ProductListPage PLP = new ProductListPage(web, get);
-
         Integer givenProduct = 4;
 
-        String priceValue = PLP.getProductPrice(givenProduct);
-        System.out.println(priceValue);
-
-        PLP.addProductToCart(givenProduct);
-
-        WebElement givenItem = PLP.getProductItem(givenProduct);
-
-        PLP.gotoProductDetails(givenItem);
-
+        Allure.step("Step#1: Obtener el precio del Producto", (step) -> {
+            String priceValue = PLP.getProductPrice(givenProduct);
+            System.out.println(priceValue);
+            Do.screenshot(testInfo);
+        });
+        Allure.step("Step#2: Agregar el producto al carrito de compras", (step) -> {
+            PLP.addProductToCart(givenProduct);
+            Do.screenshot(testInfo);
+        });
+        Allure.step("Step#3: Ir al PDP del producto", (step) -> {
+            WebElement givenItem = PLP.getProductItem(givenProduct);
+            PLP.gotoProductDetails(givenItem);
+        });
     }
 }
