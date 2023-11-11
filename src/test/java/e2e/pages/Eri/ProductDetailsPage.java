@@ -23,14 +23,14 @@ public class ProductDetailsPage {
     private Supplier<WebElement> passwordInput;
     private Supplier<WebElement> loginSubmitButton;
     // PLP
-    List<WebElement> productImages;
+    public Supplier<List<WebElement>> productImages;
     public Supplier<List<WebElement>> productTitle;
     public Supplier<List<WebElement>> productName;
     public Supplier<List<WebElement>> productDescription;
     public Supplier<List<WebElement>> productImage;
     public Supplier<List<WebElement>> productPrice;
     public Supplier<List<WebElement>> addToCartButton;
-    public Supplier<List<WebElement>> backButton;
+    public Supplier<WebElement> backButton;
     private Supplier<WebElement> yourCart;
     public Supplier<List<WebElement>> removeButton;
 
@@ -48,14 +48,14 @@ public class ProductDetailsPage {
         this.loginSubmitButton = () -> this.get.ByTestId("login-button");
 
         // PLP
-        this.productImages = get.ByClasses(".inventory_item_img");
+        this.productImages = () -> get.ByClasses(".inventory_item_img");
         this.productTitle = () -> get.ByClasses(".inventory_item_name");
         this.productName = () -> this.get.ByClasses(".inventory_details_name.large_size>div");
         this.productDescription = () -> this.get.ByClasses(".inventory_details_desc.large_size");
         this.productImage = () -> this.get.ByClasses(".inventory_details_img");
         this.productPrice = () -> this.get.ByClasses(".inventory_details_price");
         this.addToCartButton = () -> this.get.ByClasses("data-test*=add-to-cart");
-        this.backButton = () -> this.get.ByClasses("data-test*=back-to-products");
+        this.backButton = () -> this.get.ByClass("data-test*=back-to-products");
         this.yourCart = () -> this.get.ById("shopping_cart_container");
         this.removeButton = () -> this.get.ByClasses("data-test*=remove");
 
@@ -78,7 +78,7 @@ public class ProductDetailsPage {
 
     // * _____ SELECT PRODUCT _____ */
     public void goToProductDetailsImage(Integer ProductIndex) {
-        WebElement imagen = this.productImages.get(0);
+        WebElement imagen = this.productImages.get().get(0);
         imagen.click();
     }
 
@@ -87,7 +87,7 @@ public class ProductDetailsPage {
         Title.click();
     }
 
-    // * _____ VALIDATION _____ */
+    // * _____ GET_____ */
     public String validateProductName(Integer productIndex) {
         WebElement Name = this.productName.get().get(0);
         String productName = Name.getText();
@@ -113,19 +113,11 @@ public class ProductDetailsPage {
 
     // * _____ MAIN ACTIONS _____ */
     public void selectAddToCartButton(Integer productIndex) {
-        List<WebElement> buttons = this.addToCartButton.get();
-        if (buttons.size() > productIndex) {
-            WebElement button = buttons.get(productIndex);
-            button.click();
-        }
+        this.Do.click(this.addToCartButton.get().get(productIndex));
     }
 
-    public void selectBackButton(Integer productIndex) {
-        List<WebElement> buttons = this.backButton.get();
-        if (buttons.size() > productIndex) {
-            WebElement button = buttons.get(productIndex);
-            button.click();
-        }
+    public void goBackToProducts() {
+        this.Do.click(this.backButton.get());
     }
 
     public void goToYourCart(WebElement givenProduct) {
@@ -147,14 +139,5 @@ public class ProductDetailsPage {
         this.enterPassword("secret_sauce");
         this.submitLogin();
         this.validate.shouldContain(web.getCurrentUrl(), "inventory.html");
-    }
-
-    public void selectProductImage() {
-    }
-
-    public void selectAddToCartButton() {
-    }
-
-    public void selectBackButton() {
     }
 }

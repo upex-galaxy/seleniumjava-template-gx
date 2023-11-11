@@ -35,7 +35,7 @@ public class EriProductDetailsTest extends TestBase {
                 productDetailsPage = new ProductDetailsPage(web, get, Do);
 
                 // Clic en la imagen del primer producto de la lista
-                productDetailsPage.selectProductImage();
+                productDetailsPage.goToProductDetailsImage(0);
 
                 // Código para verificar el nombre del producto
 
@@ -65,10 +65,10 @@ public class EriProductDetailsTest extends TestBase {
                 System.out.println("Product Price: " + productPrice);
 
                 // Código para agregar el producto
-                productDetailsPage.selectAddToCartButton();
+                productDetailsPage.selectAddToCartButton(0);
 
                 // Código para remover el producto
-                productDetailsPage.selectBackButton();
+                productDetailsPage.goBackToProducts();
         }
 }
 /*
