@@ -6,25 +6,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import e2e.utils.Action;
-import e2e.utils.Assertion;
+// import e2e.utils.Assertion;
 import e2e.utils.Locator;
 
 //* TECH DEB: GX3-296 https://upexgalaxy26.atlassian.net/browse/GX3-296
 
 public class NatiProductsPage {
-    private WebDriver web;
+    // private WebDriver web;
     private Locator get;
     private Action Do;
-    private Assertion validate;
+    // private Assertion validate;
     private Supplier<List<WebElement>> addToCartButton;
     private Supplier<List<WebElement>> removeFromCartButton;
     private Supplier<WebElement> shoppingCart;
 
     public NatiProductsPage(WebDriver driver, Locator locator, Action action) {
-        this.web = driver;
+        // this.web = driver;
         this.get = locator;
         this.Do = action;
-        this.validate = new Assertion();
+        // this.validate = new Assertion();
 
         this.removeFromCartButton = () -> this.get.Selectors("[data-test*=remove]");
         this.addToCartButton = () -> this.get.Selectors("[data-test*=add-to-cart]");
