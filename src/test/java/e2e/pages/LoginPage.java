@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import e2e.utils.Action;
 import e2e.utils.Locator;
 
-//*  Tech Debt: GX3-253 = https://upexgalaxy26.atlassian.net/browse/GX3-253
+//*  Tech Debt: GX3-253 = https://upexgalaxy26.atlassian.net/browse/GX3-367
 public class LoginPage {
     // SE DIVIDE EN 3 SECTORES PRINCIPALES:
 
