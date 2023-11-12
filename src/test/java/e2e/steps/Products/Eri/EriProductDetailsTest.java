@@ -8,7 +8,9 @@ import org.openqa.selenium.*;
 
 import e2e.fixtures.Eri.TestBase;
 import e2e.pages.Eri.ProductDetailsPage;
+import e2e.pages.Eri.LoginPage;
 import e2e.utils.*;
+import io.qameta.allure.Allure;
 
 //* Tech Debt: GX3-248 =https://upexgalaxy26.atlassian.net/browse/GX3-248 */
 public class EriProductDetailsTest extends TestBase {
@@ -18,14 +20,15 @@ public class EriProductDetailsTest extends TestBase {
         // el usuario esta LOGEADO y situarse en el PLP.
         @BeforeEach
         public void precondition() throws InterruptedException {
-                get = new Locator(web);
                 web.get("https://www.saucedemo.com");
-                productDetailsPage = new ProductDetailsPage(web, get, Do);
-                productDetailsPage.enterUsername("standard_user");
-                productDetailsPage.enterPassword("secret_sauce");
-                productDetailsPage.submitLogin();
-                assertion = new Assertion();
-                assertion.shouldContain(web.getCurrentUrl(), "inventory.html");
+                LoginPage loginPage = new LoginPage(web, get, Do);
+
+                Allure.step("Loguearse", (step) -> {
+                        loginPage.enterUsername("standard_user");
+                        loginPage.enterPassword("secret_sauce");
+                        loginPage.submitLogin();
+                        then.shouldContain(web.getCurrentUrl(), "inventory.html");
+                });
         }
 
         @Test
