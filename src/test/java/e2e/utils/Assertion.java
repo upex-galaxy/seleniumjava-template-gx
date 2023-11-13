@@ -1,6 +1,7 @@
 package e2e.utils;
 
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Assertion {
@@ -31,5 +32,14 @@ public class Assertion {
 
     public void shouldBeVisible(WebElement locator) {
         Assertions.assertTrue(locator.isDisplayed());
+    }
+
+    // Busca en el html en formato string de la pantalla actual
+    public void textShouldNotExist(String elementText, WebDriver web) {
+        Assertions.assertFalse(web.getPageSource().contains(elementText));
+    }
+
+    public void textShouldExist(String elementText, WebDriver web) {
+        Assertions.assertTrue(web.getPageSource().contains(elementText));
     }
 }

@@ -25,12 +25,13 @@ public class ProductListPage {
         this.Do.click(this.addProductBtns.get().get(indexProduct));
     }
 
-    public void AddRandomProducts() {
+    public Integer AddRandomProducts() {
         Integer size = this.addProductBtns.get().size();
         Integer Qty = random.nextInt(size);
         for (int i = 0; i < Qty; i++) {
             Integer actualSize = this.addProductBtns.get().size();
             this.AddProducts(random.nextInt(actualSize));
         }
+        return size;
     }
 }

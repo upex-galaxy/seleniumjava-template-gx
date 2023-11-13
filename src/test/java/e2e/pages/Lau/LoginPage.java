@@ -23,9 +23,9 @@ public class LoginPage {
         this.get = locator;
         this.Do = action;
         // ?Selectors
-        this.usernameInput = () -> this.get.Selector("data-test=username");
-        this.passwordInput = () -> this.get.Selector("data-test=password");
-        this.submitButton = () -> this.get.Selector("data-test='login-button'");
+        this.usernameInput = () -> this.get.Selector("[data-test=username]");
+        this.passwordInput = () -> this.get.Selector("[data-test=password]");
+        this.submitButton = () -> this.get.Selector("[data-test=login-button]");
     }
 
     // ?Metods
