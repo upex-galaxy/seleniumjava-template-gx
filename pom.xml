@@ -15,8 +15,10 @@
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
         <project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
         <archetype.encoding>${encoding}</archetype.encoding>
-        <cucumber.version>7.13.0</cucumber.version>
         <selenium.version>4.11.0</selenium.version>
+        <cucumber.version>7.13.0</cucumber.version>
+        <junit5.version>5.10.0</junit5.version>
+        <allure.version>2.23.0</allure.version>
     </properties>
 
     <build>
@@ -31,8 +33,16 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-
-            <!-- MAVEN TEST RUNNER PLUGIN -->
+            <!--* ALLURE PLUGIN -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.12.0</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                </configuration>
+            </plugin>
+            <!--* MAVEN TEST RUNNER PLUGIN -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -43,6 +53,15 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
+                        <configuration>
+                            <statelessTestsetReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">
+                                <disable>false</disable>
+                                <usePhrasedFileName>false</usePhrasedFileName>
+                                <usePhrasedTestSuiteClassName>true</usePhrasedTestSuiteClassName>
+                                <usePhrasedTestCaseClassName>true</usePhrasedTestCaseClassName>
+                                <usePhrasedTestCaseMethodName>true</usePhrasedTestCaseMethodName>
+                            </statelessTestsetReporter>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
@@ -55,7 +74,7 @@
     </build>
 
     <dependencies>
-        <!--* Main Repo Dependencies -->
+    <!--* Main Repo Dependencies -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -96,14 +115,20 @@
             <artifactId>guice</artifactId>
             <version>4.1.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.4.0</version>
+        </dependency>
+
+    <!--* Cucumber dependencies -->
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-guice -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-guice</artifactId>
-            <version>7.13.0</version>
+            <version>${cucumber.version}</version>
         </dependency>
-
-        <!--* test dependencies -->
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -118,29 +143,30 @@
             <scope>test</scope>
         </dependency>
 
-        <!--* Dependencia para JUnit 5 (JUnit Jupiter) -->
+    <!--* Dependencias para JUnit 5 (JUnit Jupiter) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.0</version>
+            <version>${junit5.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--* Dependencia para el motor de ejecución de JUnit Jupiter -->
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.0</version>
+            <version>${junit5.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+    <!--* PARA REPORTE DE PRUEBAS: Allure Report para JUnit5 -->
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
         <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>5.4.0</version>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
         </dependency>
 
-        <!--* Esta Dep suprime los registros y elimina advertencias de SLF4J -->
+    <!--* Esta Dep suprime los registros y elimina advertencias de SLF4J -->
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -148,8 +174,6 @@
             <version>2.0.9</version>
             <scope>test</scope>
         </dependency>
-
-
 
     </dependencies>
 
