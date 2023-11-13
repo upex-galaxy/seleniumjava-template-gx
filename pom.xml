@@ -53,6 +53,15 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
+                        <configuration>
+                            <statelessTestsetReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">
+                                <disable>false</disable>
+                                <usePhrasedFileName>false</usePhrasedFileName>
+                                <usePhrasedTestSuiteClassName>true</usePhrasedTestSuiteClassName>
+                                <usePhrasedTestCaseClassName>true</usePhrasedTestCaseClassName>
+                                <usePhrasedTestCaseMethodName>true</usePhrasedTestCaseMethodName>
+                            </statelessTestsetReporter>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
@@ -155,21 +164,6 @@
             <artifactId>allure-junit5</artifactId>
             <version>${allure.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>app.getxray</groupId>
-            <artifactId>xray-maven-plugin</artifactId>
-            <version>0.7.3</version>
-            <scope>test</scope>
-            <configuration>
-                <cloud>true</cloud>
-                <clientId>D7CF3A00EC0A444883B662F86D9245B8</clientId>
-                <clientSecret>69a56899fd7f4b640d86f30edb1b10936121713666daeff455b1c4d8cc1ca25a</clientSecret>
-                <projectKey>GX3</projectKey>
-                <fixVersion>1.0</fixVersion>
-                <reportFormat>junit</reportFormat>
-                <reportFile>target/junit.xml</reportFile>
-            </configuration>
         </dependency>
 
     <!--* Esta Dep suprime los registros y elimina advertencias de SLF4J -->
