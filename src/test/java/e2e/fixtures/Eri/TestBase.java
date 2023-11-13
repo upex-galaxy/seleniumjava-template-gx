@@ -10,7 +10,7 @@ import e2e.utils.Assertion;
 import e2e.utils.Locator;
 
 public class TestBase {
-    public static final String BASE_URL = "https://www.saucedemo.com/";
+    public static final String BASE_URL = "https://www.saucedemo.com";
     private static final DriverManager MANAGER = new DriverManager();
     public WebDriver web;
     public Locator get;

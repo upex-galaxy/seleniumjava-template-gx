@@ -1,16 +1,13 @@
 package e2e.steps.Products.Eri;
 
-import java.util.List;
-
-import org.junit.Test;
+//import org.junit.Test;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 
-import e2e.fixtures.Eri.TestBase;
-import e2e.pages.Eri.ProductDetailsPage;
-import e2e.pages.Eri.LoginPage;
+import e2e.fixtures.Eri.*;
+import e2e.pages.Eri.*;
 import e2e.utils.*;
-import io.qameta.allure.Allure;
+import io.qameta.allure.*;
 
 //* Tech Debt: GX3-248 =https://upexgalaxy26.atlassian.net/browse/GX3-248 */
 public class EriProductDetailsTest extends TestBase {
@@ -33,183 +30,143 @@ public class EriProductDetailsTest extends TestBase {
 
         @Test
         @DisplayName("TC1: Validar poder seleccionar un producto sin añadir al carrito desde la imagen")
-        public void testProductWithoutAdding() throws InterruptedException {
+        public void testProductWithoutAddingI() throws InterruptedException {
 
                 productDetailsPage = new ProductDetailsPage(web, get, Do);
 
+                // Verificar el titulo del producto de la lista
+
+                WebElement textTitle = get.Selector(".inventory_item_name");
+                String productTitle = textTitle.getText();
+                then.shouldContain(productTitle, "Sauce Labs Backpack");
+                System.out.println("Product title List: " + productTitle);
+
                 // Clic en la imagen del primer producto de la lista
-                productDetailsPage.goToProductDetailsImage(0);
 
-                // Código para verificar el nombre del producto
+                WebElement goToProductDetailsImage = get.Selector(".inventory_item_img");
+                goToProductDetailsImage.click();
 
-                List<WebElement> viewProductTitleElements = productDetailsPage.productTitle.get();
-                WebElement viewProductTitleElement = viewProductTitleElements.get(0);
-                String productTitle = viewProductTitleElement.getText();
-                assertion.shouldContain(productTitle, "Sauce Labs Backpack");
-                System.out.println("Product title: " + productTitle);
+                // Verificar el titulo del detalle del producto
+                WebElement getProductName = get.Selector(".inventory_details_name");
+                String productName = getProductName.getText();
+                then.shouldContain(productName, "Sauce Labs Backpack");
+                System.out.println("Product title Details: " + productName);
 
                 // Código para verificar la descripcion del producto
-                List<WebElement> viewProductDescriptionElements = productDetailsPage.productDescription.get();
-                WebElement viewProductDescriptionElement = viewProductDescriptionElements.get(0);
-                String productDesc = viewProductDescriptionElement.getText();
-                assertion.shouldContain(productDesc, "carry.allTheThings()");
-                System.out.println("Product Desc: " + productDesc);
+                WebElement getProductDescription = get.Selector(".inventory_details_desc");
+                String productDesc = getProductDescription.getText();
+                then.shouldContain(productDesc, "carry.allTheThings()");
+                System.out.println("Product Desc Details: " + productDesc);
 
                 // Código para verificar la imagen del producto
-                List<WebElement> viewProductImageElements = productDetailsPage.productImage.get();
-                WebElement viewProductImageElement = viewProductImageElements.get(0);
-                assertion.shouldBeVisible(viewProductImageElement);
+                WebElement getProductImagen = get.Selector(".inventory_details_img");
+                Assertions.assertTrue(getProductImagen.isDisplayed());
 
                 // Código para verificar el precio del producto
-                List<WebElement> viewProductPriceElements = productDetailsPage.productPrice.get();
-                WebElement viewProductPriceElement = viewProductPriceElements.get(0);
-                String productPrice = viewProductPriceElement.getText();
-                assertion.shouldContain(productPrice, "$29.99");
+                WebElement getProductPrice = get.Selector(".inventory_details_price");
+                String productPrice = getProductPrice.getText();
+                then.shouldContain(productPrice, "$29.99");
                 System.out.println("Product Price: " + productPrice);
 
                 // Código para agregar el producto
-                productDetailsPage.selectAddToCartButton(0);
+                WebElement selectAddToCardButton = get.Selector("[data-test=\"add-to-cart-sauce-labs-backpack\"]");
+                selectAddToCardButton.click();
+                WebElement goToYourCart = get.Selector(".shopping_cart_badge");
+                String yourCard = goToYourCart.getText();
+                then.shouldBeEqual(yourCard, "1");
+                System.out.println(yourCard);
+
+                // Código para volver a la lista de productos
+                WebElement goBackToProducts = get.Selector("[data-test=\"back-to-products\"]");
+                goBackToProducts.click();
+                WebElement ProductList = get.Selector(".title");
+                String textProductsList = ProductList.getText();
+                then.shouldBeEqual(textProductsList, "Products");
+                System.out.println(textProductsList);
+        }
+
+        @Test
+        @DisplayName("TC2: Validar poder seleccionar un producto sin añadir al carrito desde el titulo")
+        public void testProductWithoutAddingT() throws InterruptedException {
+                productDetailsPage = new ProductDetailsPage(web, get, Do);
+                // Verificar el titulo del producto de la lista
+
+                WebElement textTitle = get.Selector(".inventory_item_name");
+                String productTitle = textTitle.getText();
+                then.shouldContain(productTitle, "Sauce Labs Backpack");
+                System.out.println("Product title List: " + productTitle);
+
+                // Clic en el titulo del primer producto de la lista
+
+                WebElement goToProductDetailsTitle = get.Selector(".inventory_item_name");
+                goToProductDetailsTitle.click();
+
+                // Verificar el titulo del detalle del producto
+                WebElement getProductName = get.Selector(".inventory_details_name");
+                String productName = getProductName.getText();
+                then.shouldContain(productName, "Sauce Labs Backpack");
+                System.out.println("Product title Details: " + productName);
+
+                // Código para verificar la descripcion del producto
+                WebElement getProductDescription = get.Selector(".inventory_details_desc");
+                String productDesc = getProductDescription.getText();
+                then.shouldContain(productDesc, "carry.allTheThings()");
+                System.out.println("Product Desc Details: " + productDesc);
+
+                // Código para verificar la imagen del producto
+                WebElement getProductImagen = get.Selector(".inventory_details_img");
+                Assertions.assertTrue(getProductImagen.isDisplayed());
+
+                // Código para verificar el precio del producto
+                WebElement getProductPrice = get.Selector(".inventory_details_price");
+                String productPrice = getProductPrice.getText();
+                then.shouldContain(productPrice, "$29.99");
+                System.out.println("Product Price: " + productPrice);
+
+                // Código para agregar el producto
+                WebElement selectAddToCardButton = get.Selector("[data-test=\"add-to-cart-sauce-labs-backpack\"]");
+                selectAddToCardButton.click();
+                WebElement goToYourCart = get.Selector(".shopping_cart_badge");
+                String yourCard = goToYourCart.getText();
+                then.shouldBeEqual(yourCard, "1");
+                System.out.println(yourCard);
+
+                // Código para volver a la lista de productos
+                WebElement goBackToProducts = get.Selector("[data-test=\"back-to-products\"]");
+                goBackToProducts.click();
+                WebElement ProductList = get.Selector(".title");
+                String textProductsList = ProductList.getText();
+                then.shouldBeEqual(textProductsList, "Products");
+                System.out.println(textProductsList);
+        }
+
+        @Test
+        @DisplayName("TC3: Validar poder eliminar un producto añadido al carrito.")
+        public void removeProductAddedToCart() throws InterruptedException {
+                productDetailsPage = new ProductDetailsPage(web, get, Do);
+                // precondition: Clic en la imagen del primer producto de la lista
+
+                WebElement goToProductDetailsImage = get.Selector(".inventory_item_img");
+                goToProductDetailsImage.click();
+
+                // precondition: Código para agregar el producto
+                WebElement selectAddToCardButton = get.Selector("[data-test=\"add-to-cart-sauce-labs-backpack\"]");
+                selectAddToCardButton.click();
+
+                // Ir al Carrito
+                WebElement goToYourCart = get.Selector(".shopping_cart_badge");
+                goToYourCart.click();
+                WebElement yourCart = get.Selector(".title");
+                String textYourCart = yourCart.getText();
+                then.shouldBeEqual(textYourCart, "Your Cart");
+                System.out.println(textYourCart);
 
                 // Código para remover el producto
-                productDetailsPage.goBackToProducts();
+                WebElement selectRemoveButton = get.Selector("[data-test=\"remove-sauce-labs-backpack\"]");
+                selectRemoveButton.click();
+                WebElement removedProduct = get.Selector(".cart_quantity_label");
+                String TextRemovedProduct = removedProduct.getText();
+                then.shouldBeEqual(TextRemovedProduct, "QTY");
+                System.out.println(TextRemovedProduct);
         }
 }
-/*
- * @Test
- * 
- * @DisplayName("TC2: Validar poder seleccionar un producto sin añadir al carrito desde el titulo"
- * )
- * public void testProductWithoutAddingTitle() throws InterruptedException {
- * productDetailsPage = new ProductDetailsPage(web, get, Do);
- * 
- * // Clic en la imagen del primer producto de la lista
- * productDetailsPage.selectProductTitle();
- * 
- * // Código para verificar el nombre del producto
- * 
- * WebElement viewProductTitleElement = productDetailsPage.productTitle.get();
- * String productTitle = viewProductTitleElement
- * .getText();
- * assertion.shouldContain(productTitle, "Sauce Labs Backpack");
- * System.out.println("Product title: " + productTitle);
- * 
- * // Código para verificar la descripcion del producto
- * WebElement viewProductDescriptionElement =
- * productDetailsPage.productDescription.get();
- * String productDesc = viewProductDescriptionElement
- * .getText();
- * assertion.shouldContain(productDesc, "carry.allTheThings()");
- * System.out.println("Product Desc: " + productDesc);
- * 
- * // Código para verificar la imagen del producto
- * WebElement viewProductImageElement = productDetailsPage.productImage
- * .get();
- * assertion.shouldBeVisible(viewProductImageElement);
- * 
- * // Código para verificar el precio del producto
- * WebElement viewProductPriceElement = productDetailsPage.productPrice.get();
- * String productPrice = viewProductPriceElement
- * .getText();
- * assertion.shouldContain(productPrice, "$29.99");
- * System.out.println("Product Price: " + productPrice);
- * 
- * // Código para agregar el producto
- * productDetailsPage.selectAddToCartButton();
- * 
- * // Código para remover el producto
- * productDetailsPage.selectBackButton();
- * 
- * }
- * 
- * @Test
- * 
- * @DisplayName("TC3: Validar poder seleccionar un producto añadido al carrito desde la imagen"
- * )
- * public void testProductWithoutAdding() throws InterruptedException {
- * productDetailsPage = new ProductDetailsPage(web, get, Do);
- * 
- * // Clic en la imagen del primer producto de la lista
- * productDetailsPage.selectProductImage();
- * 
- * // Código para verificar el nombre del producto
- * 
- * WebElement viewProductTitleElement = productDetailsPage.productTitle.get();
- * String productTitle = viewProductTitleElement
- * .getText();
- * assertion.shouldContain(productTitle, "Sauce Labs Backpack");
- * System.out.println("Product title: " + productTitle);
- * 
- * // Código para verificar la descripcion del producto
- * WebElement viewProductDescriptionElement =
- * productDetailsPage.productDescription.get();
- * String productDesc = viewProductDescriptionElement
- * .getText();
- * assertion.shouldContain(productDesc, "carry.allTheThings()");
- * System.out.println("Product Desc: " + productDesc);
- * 
- * // Código para verificar la imagen del producto
- * WebElement viewProductImageElement = productDetailsPage.productImage
- * .get();
- * assertion.shouldBeVisible(viewProductImageElement);
- * 
- * // Código para verificar el precio del producto
- * WebElement viewProductPriceElement = productDetailsPage.productPrice.get();
- * String productPrice = viewProductPriceElement
- * .getText();
- * assertion.shouldContain(productPrice, "$29.99");
- * System.out.println("Product Price: " + productPrice);
- * 
- * // Código para agregar el producto
- * productDetailsPage.selectAddToCartButton();
- * 
- * // Código para remover el producto
- * productDetailsPage.selectBackButton();
- * 
- * }
- * 
- * @Test
- * 
- * @DisplayName("TC34: Validar poder seleccionar un producto añadido al carrito desde el titulo"
- * )
- * public void testProductWithoutAdding() throws InterruptedException {
- * productDetailsPage = new ProductDetailsPage(web, get, Do);
- * 
- * // Clic en la imagen del primer producto de la lista
- * productDetailsPage.selectProductImage();
- * 
- * // Código para verificar el nombre del producto
- * 
- * WebElement viewProductTitleElement = productDetailsPage.productTitle.get();
- * String productTitle = viewProductTitleElement
- * .getText();
- * assertion.shouldContain(productTitle, "Sauce Labs Backpack");
- * System.out.println("Product title: " + productTitle);
- * 
- * // Código para verificar la descripcion del producto
- * WebElement viewProductDescriptionElement =
- * productDetailsPage.productDescription.get();
- * String productDesc = viewProductDescriptionElement
- * .getText();
- * assertion.shouldContain(productDesc, "carry.allTheThings()");
- * System.out.println("Product Desc: " + productDesc);
- * 
- * // Código para verificar la imagen del producto
- * WebElement viewProductImageElement = productDetailsPage.productImage
- * .get();
- * assertion.shouldBeVisible(viewProductImageElement);
- * 
- * // Código para verificar el precio del producto
- * WebElement viewProductPriceElement = productDetailsPage.productPrice.get();
- * String productPrice = viewProductPriceElement
- * .getText();
- * assertion.shouldContain(productPrice, "$29.99");
- * System.out.println("Product Price: " + productPrice);
- * 
- * // Código para agregar el producto
- * productDetailsPage.selectAddToCartButton();
- * 
- * // Código para remover el producto
- * productDetailsPage.selectBackButton();
- * 
- * }
- */

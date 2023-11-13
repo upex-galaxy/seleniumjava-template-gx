@@ -45,13 +45,13 @@ public class ProductDetailsPage extends TestBase {
         this.productImages = () -> get.ByClasses(".inventory_item_img");
         this.productTitle = () -> get.ByClasses(".inventory_item_name");
         this.productName = () -> this.get.ByClasses(".inventory_details_name.large_size>div");
-        this.productDescription = () -> this.get.ByClasses(".inventory_details_desc.large_size");
+        this.productDescription = () -> this.get.ByClasses(".inventory_details_desc");
         this.productImage = () -> this.get.ByClasses(".inventory_details_img");
         this.productPrice = () -> this.get.ByClasses(".inventory_details_price");
-        this.addToCartButton = () -> this.get.ByClasses("data-test*=add-to-cart");
-        this.backButton = () -> this.get.ByClass("data-test*=back-to-products");
-        this.yourCart = () -> this.get.ById("shopping_cart_container");
-        this.removeButton = () -> this.get.ByClass("data-test*=remove");
+        this.addToCartButton = () -> this.get.ByClasses("[data-test=\"add-to-cart-sauce-labs-backpack\"]");
+        this.backButton = () -> this.get.ByClass("[data-test=\"back-to-products\"]");
+        this.yourCart = () -> this.get.ByClass(".shopping_cart_badge");
+        this.removeButton = () -> this.get.ByClass("[data-test=\"remove-sauce-labs-backpack\"]");
 
     }
 
@@ -59,7 +59,7 @@ public class ProductDetailsPage extends TestBase {
 
     // * _____ SELECT PRODUCT _____ */
     public void goToProductDetailsImage(Integer ProductIndex) {
-        WebElement imagen = this.productImages.get().get(0);
+        WebElement imagen = this.productImages.get().get(1);
         imagen.click();
     }
 
@@ -69,25 +69,25 @@ public class ProductDetailsPage extends TestBase {
     }
 
     // * _____ GET_____ */
-    public String validateProductName(Integer productIndex) {
+    public String getProductName(Integer productIndex) {
         WebElement Name = this.productName.get().get(0);
         String productName = Name.getText();
         return productName;
     }
 
-    public String validateProductDescription(Integer productIndex) {
+    public String getProductDescription(Integer productIndex) {
         WebElement Descripcion = this.productDescription.get().get(0);
         String productDescription = Descripcion.getText();
         return productDescription;
     }
 
-    public String validateProductPrice(Integer productIndex) {
+    public String getProductPrice(Integer productIndex) {
         WebElement Price = this.productPrice.get().get(productIndex);
         String productPrice = Price.getText();
         return productPrice;
     }
 
-    public void validateProductImage(Integer productIndex) {
+    public void getProductImage(Integer productIndex) {
         WebElement image = this.productImage.get().get(productIndex);
         validate.shouldBeVisible(image);
     }
