@@ -12,7 +12,7 @@ import e2e.pages.LoginPage;
 //* Tech Debt: GX3-253 = https://upexgalaxy26.atlassian.net/browse/GX3-253
 @Epic("Account Component")
 @Feature("Login Features")
-@Story("GX3-0: Login with credentials")
+@Story("GX3-367: SwagLabs | Account | Iniciar sesión y BR de Accesos")
 public class LoginTest extends TestBase {
 
     @BeforeEach
@@ -22,7 +22,7 @@ public class LoginTest extends TestBase {
 
     @Test
     @Severity(BLOCKER)
-    @Issue("https://upexgalaxy26.atlassian.net/browse/GX3-253")
+    @Issue("https://upexgalaxy26.atlassian.net/browse/GX3-367")
     @DisplayName("TC1: Validar Login exitoso")
     @Description("Este caso de prueba va a validar que el usuario pueda iniciar sesión exitosamente")
     public void login(TestInfo testInfo) throws InterruptedException, IOException {
