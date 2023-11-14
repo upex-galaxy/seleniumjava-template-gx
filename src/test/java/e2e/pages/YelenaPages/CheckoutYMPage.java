@@ -26,7 +26,7 @@ public class CheckoutYMPage {
 
     }
 
-    public void ClickCheckout() throws InterruptedException, IOException {
+    public void ClickCheckout() {
 
         this.Do.click(this.buttoncheck.get());
         // Thread.sleep(5000);

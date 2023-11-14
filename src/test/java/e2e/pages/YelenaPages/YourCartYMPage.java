@@ -25,7 +25,7 @@ public class YourCartYMPage {
         this.cart = () -> driver.findElement(By.cssSelector("[class$='shopping_cart_link']"));
     }
 
-    public void ClickCart() throws InterruptedException, IOException {
+    public void ClickCart() {
 
         this.Do.click(this.cart.get());
         // Thread.sleep(5000);
