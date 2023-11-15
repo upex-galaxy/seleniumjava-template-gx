@@ -71,7 +71,7 @@
 	"cucumberautocomplete.stepRegExSymbol": "'",
 	"git.enableSmartCommit": true,
 	"githubPullRequests.ignoredPullRequestBranches": ["main"],
-	"java.configuration.updateBuildConfiguration": "interactive",
+	"java.configuration.updateBuildConfiguration": "automatic",
 	"java.compile.nullAnalysis.mode": "automatic",
-	"maven.terminal.useJavaHome": true,
+	"maven.terminal.useJavaHome": true
 }
