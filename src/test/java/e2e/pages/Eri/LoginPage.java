@@ -8,12 +8,11 @@ import java.util.function.Supplier;
 //import org.openqa.selenium.By;
 import org.openqa.selenium.*;
 
-import e2e.fixtures.Eri.TestBase;
 //import e2e.pages.Eri.ProductDetailsPage;
 import e2e.utils.*;
 
 //* Tech Debt: GX3-248 =https://upexgalaxy26.atlassian.net/browse/GX3-248 */
-public class LoginPage extends TestBase {
+public class LoginPage {
 
     // Login
     WebDriver web;

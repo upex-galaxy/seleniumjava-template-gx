@@ -9,14 +9,13 @@ import java.util.function.Supplier;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import e2e.fixtures.Eri.TestBase;
 import e2e.pages.Eri.ProductDetailsPage;
 import e2e.utils.Action;
 import e2e.utils.Assertion;
 import e2e.utils.Locator;
 
 //* Tech Debt: GX3-248 =https://upexgalaxy26.atlassian.net/browse/GX3-248 */
-public class ProductDetailsPage extends TestBase {
+public class ProductDetailsPage {
 
     private Locator get;
     private Action Do;
