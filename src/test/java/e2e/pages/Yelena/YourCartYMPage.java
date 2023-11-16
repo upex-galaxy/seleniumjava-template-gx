@@ -1,6 +1,5 @@
-package e2e.pages.YelenaPages;
+package e2e.pages.Yelena;
 
-import java.io.IOException;
 import java.util.function.Supplier;
 
 import org.openqa.selenium.By;
@@ -28,7 +27,7 @@ public class YourCartYMPage {
     public void ClickCart() {
 
         this.Do.click(this.cart.get());
-        // Thread.sleep(5000);
+
     }
 
 }
