@@ -18,6 +18,7 @@ public class FormInformationYMPage {
     private Supplier<WebElement> lastnameInput;
     private Supplier<WebElement> postalcodeInput;
     private Supplier<WebElement> continueButton;
+    private Supplier<WebElement> cancelButton;
 
     public FormInformationYMPage(WebDriver driver, Locator locator, Action action) {
         this.web = driver;
@@ -27,6 +28,7 @@ public class FormInformationYMPage {
         this.lastnameInput = () -> driver.findElement(By.cssSelector("[data-test$='lastName']"));
         this.postalcodeInput = () -> driver.findElement(By.cssSelector("[data-test$='postalCode']"));
         this.continueButton = () -> driver.findElement(By.cssSelector("[class$='btn_action']"));
+        this.cancelButton = () -> driver.findElement(By.cssSelector("[data-test$='cancel']"));
     }
 
     public void IngresarNombre(String textValue) {
@@ -43,6 +45,10 @@ public class FormInformationYMPage {
 
     public void buttonContinue() throws InterruptedException, IOException {
         this.Do.click(this.continueButton.get());
+    }
+
+    public void buttonCancel() throws InterruptedException, IOException {
+        this.Do.click(this.cancelButton.get());
     }
 
     public void IngresarDatosValidos() throws InterruptedException, IOException {
@@ -78,5 +84,12 @@ public class FormInformationYMPage {
         this.IngresarApellido("Santos");
         this.IngresarCodePostal("");
         this.buttonContinue();
+    }
+
+    public void Cancelar() throws InterruptedException, IOException {
+        this.IngresarNombre("Roberto");
+        this.IngresarApellido("Flores");
+        this.IngresarCodePostal("NY1200");
+        this.buttonCancel();
     }
 }

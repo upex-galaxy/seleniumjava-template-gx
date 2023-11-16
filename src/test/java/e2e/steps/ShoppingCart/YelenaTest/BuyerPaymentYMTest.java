@@ -124,8 +124,25 @@ public class BuyerPaymentYMTest extends TestBase {
                     then.shouldBeTrue(title.isDisplayed());
                     Do.screenshot(testInfo);
                 });
-        Thread.sleep(5000);
+        Thread.sleep(1000);
 
+    }
+
+    @Test
+    @Severity(BLOCKER)
+    @Issue("https://upexgalaxy30.atlassian.net/browse/GX3-346")
+    @DisplayName("TC6: Validar poder dar Cancel en el formulario Checkout: Your Information")
+    @Description("Este caso de prueba va a validar que el usuario da click en el botón Cancel del formulario de Checkout: Your Information de forma exitosamente")
+    public void ValidarCancel(TestInfo testInfo) throws InterruptedException, IOException {
+        FormInformationYMPage dat = new FormInformationYMPage(web, get, Do);
+        Allure.step("Step 1: Ingresa la información al formulario y da click en el botón Cancel", (step) -> {
+            dat.buttonCancel();
+        });
+        Allure.step("Resultado Esperado: Debería regresar a la sección de SCP", (step) -> {
+            then.shouldContain(web.getCurrentUrl(), "cart.html");
+            Do.screenshot(testInfo);
+        });
+        Thread.sleep(2000);
     }
 
 }
