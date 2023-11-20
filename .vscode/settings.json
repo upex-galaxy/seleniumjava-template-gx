@@ -73,5 +73,5 @@
 	"githubPullRequests.ignoredPullRequestBranches": ["main", "QA"],
 	"java.configuration.updateBuildConfiguration": "interactive",
 	"java.compile.nullAnalysis.mode": "automatic",
-	"maven.terminal.useJavaHome": true,
+	"maven.terminal.useJavaHome": true
 }
