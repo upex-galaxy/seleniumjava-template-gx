@@ -15,7 +15,7 @@ public class DriverManager {
         if (headlessValue != null && "true".equalsIgnoreCase(headlessValue)) {
             options.addArguments("--headless");
         }
-        return WebDriverManager.chromedriver().capabilities(options).create();
+        return WebDriverManager.chromedriver().clearDriverCache().capabilities(options).create();
     }
 
     public WebDriver setFirefoxDriver() {

@@ -1,77 +1,108 @@
 {
-	"workbench.settings.editor": "json",
-	"workbench.colorTheme": "Andromeda Italic",
-	"workbench.iconTheme": "vscode-icons",
-	"cSpell.language": "en,es",
-	"terminal.integrated.defaultProfile.windows": "Git Bash",
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"[java]": {
-		"editor.defaultFormatter": "redhat.java",
-		"editor.formatOnPaste": true,
-		"editor.formatOnSave": true,
-		"editor.formatOnType": true
+	"[Typescript]": {
+		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
 	},
-	"[feature]": {
-		"editor.defaultFormatter": "CucumberOpen.cucumber-official"
-	},
-	"[cucumber]": {
-		"editor.defaultFormatter": "CucumberOpen.cucumber-official"
+	"[javascript]": {
+		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
 	},
 	"files.associations": {
-		"*.feature": "feature"
+		"*.yml": "yaml"
 	},
-	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
-	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
-	"editor.quickSuggestions": {
-		"comments": false,
-		"strings": true,
-		"other": true
+	"[yaml]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2,
+		"editor.autoIndent": "keep",
+		"diffEditor.ignoreTrimWhitespace": false,
+		"editor.defaultFormatter": "kennylong.kubernetes-yaml-formatter",
+		"editor.formatOnSave": true
 	},
-	"editor.formatOnType": true,
-	"editor.formatOnPaste": true,
-	"editor.formatOnSave": true,
+	"cypressHelper.menuItems": {
+		"FindCustomCommandReferences": true,
+		"FindStepDefinitionReferences": true,
+		"GenerateCustomCommandTypes": true,
+		"GoToCustomCommand": false,
+		"OpenCypress": false,
+		"ParseHAR": false,
+		"RunCypress": false,
+		"SchemaGenerator": false,
+		"mockAutocomplete": false
+	},
+	"editor.autoIndent": "advanced",
 	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-	"editor.tabCompletion": "on",
-	"editor.lineHeight": 20,
 	"editor.cursorBlinking": "expand",
-	"eslint.validate": ["typescript", "javascript", "ts", "js"],
-	"eslint.format.enable": true,
+	"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+	"editor.formatOnPaste": false, // required
+	"editor.formatOnType": false, // required
+	"editor.formatOnSave": true, // optional
+	"editor.formatOnSaveMode": "file", // required to format on save
+	"vs-code-prettier-eslint.prettierLast": false, // set as "true" to run 'prettier' last not first
+	"editor.lineHeight": 20,
+	"editor.defaultColorDecorators": true,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "explicit"
+	},
+	"editor.quickSuggestions": {
+		"comments": true,
+		"other": true,
+		"strings": true
+	},
+	"editor.tabCompletion": "on",
 	"eslint.codeAction.showDocumentation": {
 		"enable": true
 	},
-	"cSpell.enableFiletypes": ["cucumber"],
-	"cSpell.autoFormatConfigFile": true,
-	"cucumber.features": ["*/**/.feature"],
-	"cucumber.glue": ["*/**/.ts", "*/**/.js"],
-	"cypressHelper.menuItems": {
-		"OpenCypress": false,
-		"RunCypress": false,
-		"GenerateCustomCommandTypes": true,
-		"GoToCustomCommand": false,
-		"FindCustomCommandReferences": true,
-		"FindStepDefinitionReferences": true,
-		"SchemaGenerator": false,
-		"ParseHAR": false,
-		"mockAutocomplete": false
-	},
-	"cucumberautocomplete.strictGherkinCompletion": true,
-	"cucumberautocomplete.strictGherkinValidation": false,
-	"cucumberautocomplete.customParameters": [
-		{
-			"parameter": "{ab}",
-			"value": "(a|b)"
-		}
-	],
-	"cucumberautocomplete.skipDocStringsFormat": true,
-	"cucumberautocomplete.formatConfOverride": {
-		"But": "relative"
-	},
-	"cucumberautocomplete.onTypeFormat": true,
-	"cucumberautocomplete.gherkinDefinitionPart": "(Given|When|Then)\\(",
-	"cucumberautocomplete.stepRegExSymbol": "'",
+	"eslint.format.enable": true,
+	"eslint.validate": ["typescript", "javascript", "ts", "js"],
+	"explorer.fileNesting.enabled": true,
+	"explorer.compactFolders": false,
+	"files.autoSave": "onFocusChange",
 	"git.enableSmartCommit": true,
-	"githubPullRequests.ignoredPullRequestBranches": ["main", "QA"],
+	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"material-icon-theme.folders.color": "#7cb342",
+	"material-icon-theme.files.associations": {
+		"tsconfig.json": "svgo",
+		"tsconfig.eslint.json": "eslint",
+		"modules.d.ts": "typescript",
+		"regression.yml": "test-ts",
+		"sanity-template.yml": "test-ts",
+		"playwright.chrome.config.ts": "playwright",
+		"playwright.firefox.config.ts": "playwright",
+		"playwright.edge.config.ts": "playwright",
+		"playwright.iphone.config.ts": "playwright",
+		"playwright.azure.config.ts": "azure",
+		"*.test.js": "test-tsx",
+		"testUtils.ts": "3d",
+		"TestBase.ts": "3d"
+	},
+	"material-icon-theme.folders.associations": {
+		"workflows": "github",
+		"test-html-report": "resolver",
+		"test-junit-report": "resolver",
+		"test-results": "content",
+		"allure-results": "content",
+		"allure-report": "mjml",
+		"support": "tools"
+	},
+	"testing.alwaysRevealTestOnStateChange": true,
+	"testing.automaticallyOpenPeekViewDuringAutoRun": true,
+	"terminal.integrated.cursorBlinking": true,
+	"terminal.integrated.cursorStyle": "line",
+	"terminal.integrated.defaultProfile.windows": "Git Bash",
+	"terminal.integrated.tabs.defaultColor": "terminal.ansiGreen",
+	"terminal.integrated.tabs.defaultIcon": "source-control",
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"workbench.colorTheme": "One Dark Pro Darker",
+	"workbench.iconTheme": "material-icon-theme",
+	"workbench.settings.editor": "json",
+	"workbench.tree.enableStickyScroll": true,
+	"[github-actions-workflow]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
 	"java.configuration.updateBuildConfiguration": "interactive",
 	"java.compile.nullAnalysis.mode": "automatic",
-	"maven.terminal.useJavaHome": true,
+	"maven.terminal.useJavaHome": true
 }

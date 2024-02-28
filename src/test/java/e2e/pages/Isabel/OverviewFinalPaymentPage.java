@@ -12,7 +12,6 @@ public class OverviewFinalPaymentPage {
     private Supplier<WebElement> cancelButton;
     private Supplier<WebElement> finishButton;
     private Supplier<WebElement> confirmationMessage;
-    private Supplier<WebElement> firtsProductPricSupplier;
     private Supplier<WebElement> productValue;
 
     public OverviewFinalPaymentPage(Locator locator, Action action) {

@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
         <project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
         <archetype.encoding>${encoding}</archetype.encoding>
-        <selenium.version>4.11.0</selenium.version>
+        <selenium.version>4.18.1</selenium.version>
         <cucumber.version>7.13.0</cucumber.version>
         <junit5.version>5.10.0</junit5.version>
         <allure.version>2.23.0</allure.version>
@@ -127,7 +127,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.4.0</version>
+            <version>5.7.0</version> <!-- para soportar los últimos Chrome Versions -->
         </dependency>
 
     <!--* Cucumber dependencies -->
