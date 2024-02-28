@@ -1,4 +1,4 @@
-[![🤖CI Regression in QA🧪](https://github.com/upex-galaxy/selenium-java-labs/actions/workflows/regression.yml/badge.svg)](https://github.com/galaxy/selenium-java-labs/actions/workflows/regression.yml)
+[![🤖CI Regression in QA🧪](https://github.com/upex-galaxy/selenium-java/actions/workflows/regression.yml/badge.svg)](https://github.com/galaxy/selenium-java/actions/workflows/regression.yml)
 
 [![vscode-logo]][vscode-site] [![selenium-logo]][selenium-site] [![java-logo]][java-site]
 
@@ -22,7 +22,7 @@ Este es un proyecto Oficial de UPEX para usar Selenium4 usando Java y Maven.
 4. Para clonar el repositorio, ejecuta el siguiente comando:
 
     ```bash
-    git clone https://github.com/upex-galaxy/L1-seljava-demo.git
+    git clone https://github.com/upex-galaxy/selenium-java.git
     ```
 
 5. Una vez descargado y dentro del Repo, automáticamente JAVA y MAVEN detectarán los paquetes para instalar las dependencias del archivo pom.xml, dado
