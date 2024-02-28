@@ -5,6 +5,10 @@
 	"[javascript]": {
 		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
 	},
+	"[java]": {
+		"editor.suggest.snippetsPreventQuickSuggestions": false,
+		"editor.defaultFormatter": "redhat.java"
+	},
 	"files.associations": {
 		"*.yml": "yaml"
 	},
@@ -15,17 +19,6 @@
 		"diffEditor.ignoreTrimWhitespace": false,
 		"editor.defaultFormatter": "kennylong.kubernetes-yaml-formatter",
 		"editor.formatOnSave": true
-	},
-	"cypressHelper.menuItems": {
-		"FindCustomCommandReferences": true,
-		"FindStepDefinitionReferences": true,
-		"GenerateCustomCommandTypes": true,
-		"GoToCustomCommand": false,
-		"OpenCypress": false,
-		"ParseHAR": false,
-		"RunCypress": false,
-		"SchemaGenerator": false,
-		"mockAutocomplete": false
 	},
 	"editor.autoIndent": "advanced",
 	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
@@ -63,27 +56,20 @@
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"material-icon-theme.folders.color": "#7cb342",
 	"material-icon-theme.files.associations": {
-		"tsconfig.json": "svgo",
-		"tsconfig.eslint.json": "eslint",
-		"modules.d.ts": "typescript",
 		"regression.yml": "test-ts",
-		"sanity-template.yml": "test-ts",
-		"playwright.chrome.config.ts": "playwright",
-		"playwright.firefox.config.ts": "playwright",
-		"playwright.edge.config.ts": "playwright",
-		"playwright.iphone.config.ts": "playwright",
-		"playwright.azure.config.ts": "azure",
+		"sanity.yml": "test-ts",
 		"*.test.js": "test-tsx",
-		"testUtils.ts": "3d",
-		"TestBase.ts": "3d"
+		"DriverManager.java": "3d",
+		"Action.java": "3d",
+		"Assertion.java": "3d",
+		"Locator.java": "3d",
+		"TestBase.java": "3d"
 	},
 	"material-icon-theme.folders.associations": {
 		"workflows": "github",
-		"test-html-report": "resolver",
-		"test-junit-report": "resolver",
 		"test-results": "content",
 		"allure-results": "content",
-		"allure-report": "mjml",
+		".allure": "mjml",
 		"support": "tools"
 	},
 	"testing.alwaysRevealTestOnStateChange": true,
