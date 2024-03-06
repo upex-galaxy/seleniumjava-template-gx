@@ -28,6 +28,14 @@ jobs:
     - name: 🧪Run Selenium tests
       run: mvn clean verify -D it.test=ViewShoppingCartItemsTest -D headless=true
 
+    - name: 📊Upload Artifact Maven Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: regression-selenium-report
+        path: target/site/allure-maven-plugin
+        retention-days: 15
+
     - name: ✅Import Test Results to Xray
       if: always()
       uses: mikepenz/xray-action@v2
@@ -39,12 +47,17 @@ jobs:
         testExecKey: 'GX3-295' #? EDITAR AQUÍ EL TEST EXECUTION A IMPORTAR LAS PRUEBAS.
         projectKey: 'GX3' #? EDITAR EN CASO DE TRABAJAR CON OTRO PROYECTO.
 
+  Ari-Slack-Notification:
+    needs: [SanityTest]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
     - name: 🔔Slack Notification of Done
-      if: always()
-      uses: rtCamp/action-slack-notify@v2.2.0
+      if: env.SLACK_WEBHOOK != '' #? Corre este paso si la variable de entorno está definida
+      uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_USERNAME: Ari✨
-        SLACK_MESSAGE: ':test_tube: SELENIUM-JAVA (SwagLabs): Test Execution is Done and updated in Jira :rocket:'
+        SLACK_MESSAGE: ':test_tube: (SELENIUM-JAVA) PROJECT: DEMO: SANITY TEST IMPORTED TO JIRA :rocket:'
         SLACK_COLOR: ${{ job.status }}
-        SLACK_ICON: https://i.imgur.com/q9kvQCp_d.webp?maxwidth=760&fidelity=grand
+        SLACK_ICON: https://image.cdn2.seaart.ai/2023-12-06/clo9g0h4msbc73ac2sog/99e1abc36f32945cd4bacf5ee7448e96194545f7_high.webp
